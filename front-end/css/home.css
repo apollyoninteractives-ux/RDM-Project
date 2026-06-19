@@ -1,0 +1,322 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --preto: #111111;
+  --vermelho: #d91c23;
+  --branco: #ffffff;
+  --cinza: #d9d4d4;
+  --cinza-escuro: #cdc7c2;
+  --rodape: #5a473b;
+}
+
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* NAVBAR */
+.navbar-rdm {
+  position: relative;
+  z-index: 10;
+  background: transparent;
+  min-height: 120px;
+}
+
+.navbar-rdm svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+  position: relative;
+  z-index: 0;
+}
+
+.navbar-rdm .nav-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.nav-menu .nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+.nav-menu .nav-link:hover {
+  background: rgba(255,255,255,0.15);
+}
+
+/* ONDAS */
+.section-wave {
+  display: block;
+  width: 100%;
+  height: 90px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* HERO */
+.hero {
+  min-height: 40vh;
+  background: var(--branco);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0 0 0;
+  overflow: hidden;
+  margin-top: -5px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-bottom: 40px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.hero-titulo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--preto);
+}
+
+.hero-texto {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 10px;
+}
+
+.hero-imagem {
+  width: 100%;
+  height: 180px;
+  background: #ccc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+/* BOTÕES */
+.btn-rdm-outline {
+  border: 1.5px solid var(--vermelho);
+  color: var(--vermelho);
+  background: transparent;
+  border-radius: 20px;
+  padding: 6px 20px;
+  font-size: 0.85rem;
+  transition: .3s;
+}
+
+.btn-rdm-outline:hover {
+  background: var(--vermelho);
+  color: white;
+}
+
+.btn-rdm-outline-dark {
+  border: 1.5px solid #888;
+  color: #444;
+  background: transparent;
+  border-radius: 20px;
+  padding: 6px 20px;
+  font-size: 0.85rem;
+  transition: .3s;
+}
+
+.btn-rdm-outline-dark:hover {
+  background: #888;
+  color: white;
+}
+
+.btn-rdm-outline-round {
+  border: 1.5px solid white;
+  color: white;
+  background: transparent;
+  border-radius: 20px;
+  padding: 6px 24px;
+  font-size: 0.85rem;
+  transition: .3s;
+}
+
+.btn-rdm-outline-round:hover {
+  background: white;
+  color: var(--preto);
+}
+
+/* CINZA */
+.cinza {
+  min-height: 40vh;
+  background: var(--cinza);
+  padding: 40px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cinza .section-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  flex: 1;
+}
+
+.section-label {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* CAROUSEL */
+.carousel-rdm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel-img {
+  flex: 1;
+  height: 180px;
+  background: #bbb;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.carousel-btn {
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: #555;
+  cursor: pointer;
+  padding: 0 8px;
+  transition: .2s;
+}
+
+.carousel-btn:hover {
+  color: var(--vermelho);
+}
+
+/* CINZA ESCURO */
+.cinza-escuro {
+  min-height: 40vh;
+  background: var(--cinza-escuro);
+  padding: 40px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.cinza-escuro .section-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  flex: 1;
+}
+
+.card-encomenda {
+  background: #7a7a7a;
+  border-radius: 16px;
+  padding: 30px 24px;
+  color: white;
+}
+
+.card-encomenda h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.encomenda-imagem {
+  width: 100%;
+  height: 180px;
+  background: #999;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
+  font-size: 0.85rem;
+}
+
+/* RODAPÉ */
+.rodape {
+  min-height: 20vh;
+  background: var(--rodape);
+  color: white;
+  padding: 50px 20px;
+}
+
+.rodape p {
+  margin: 2px 0;
+  font-size: 0.85rem;
+}
+
+.logo-rodape {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  color: var(--preto);
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.logo-rodape span {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.logo-rodape small {
+  font-size: 0.7rem;
+  color: #555;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .navbar-rdm svg {
+    height: 110px;
+  }
+  .navbar-rdm .nav-content {
+    padding: 0 15px;
+  }
+  .hero-titulo {
+    font-size: 1.4rem;
+  }
+  .section-wave {
+    height: 70px;
+  }
+  .card-encomenda h2 {
+    font-size: 1rem;
+  }
+  .navbar-brand {
+    font-size: 1.4rem;
+  }
+}
