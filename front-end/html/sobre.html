@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre Nós | RDM Gráfica</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="../css/home.css" rel="stylesheet">
+<link href="../css/sobre.css" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-rdm fixed-top">
+
+<svg class="navbar-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" preserveAspectRatio="none">
+<path d="M0,0 L1440,0 L1440,100 C1260,140 1080,80 900,115 C720,150 540,85 360,118 C240,140 120,100 0,120 Z" fill="#d91c23"/>
+<path d="M0,0 L1440,0 L1440,88 C1260,128 1080,68 900,103 C720,138 540,73 360,106 C240,128 120,88 0,108 Z" fill="#111"/>
+</svg>
+<div class="container d-flex align-items-center">
+<a class="navbar-brand fw-bold fs-3" href="home.html">RDM</a>
+<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="menu">
+<ul class="navbar-nav ms-auto gap-3">
+<li class="nav-item"><a class="nav-link" href="home.html#home">Início</a></li>
+<li class="nav-item"><a class="nav-link" href="home.html#servicos">Serviços</a></li>
+<li class="nav-item"><a class="nav-link" href="home.html#portfolio">Portfólio</a></li>
+<li class="nav-item"><a class="nav-link active" href="sobre.html">Sobre Nós</a></li>
+<li class="nav-item"><a class="nav-link" href="home.html#contato">Contato</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<main class="sobre-bg">
+<div class="container">
+
+<section class="sobre-card reveal">
+<h2 class="section-title">Sobre nós:</h2>
+<div class="row align-items-center g-4">
+<div class="col-md-8">
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since it a type.</p>
+<a href="home.html#contato" class="sobre-link">&gt;CONTATO</a>
+</div>
+<div class="col-md-4">
+<div class="sobre-placeholder">imagem</div>
+</div>
+</div>
+</section>
+
+<section class="sobre-card reveal">
+<h2 class="section-title">Nossa História:</h2>
+<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting.</p>
+<p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+<div class="sobre-placeholder sobre-placeholder-wide">imagem</div>
+</section>
+
+</div>
+</main>
+
+<footer class="rodape" id="contato">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-md-6">
+<p class="mb-1">ENDEREÇO:</p>
+<p class="mb-1">RUA:</p>
+<p class="mb-1">TELEFONE:</p>
+<p class="mb-0">CEP:</p>
+</div>
+<div class="col-md-6 text-md-end mt-4 mt-md-0">
+<span class="fw-bold fs-3">RDM</span>
+<div class="small text-uppercase">Confecções</div>
+<img src="../img/logo.png" alt="Logo RDM" class="mt-2" style="max-width: 150px;">
+</div>
+</div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add('active');
+});
+});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
