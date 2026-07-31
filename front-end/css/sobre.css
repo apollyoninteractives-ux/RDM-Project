@@ -7,8 +7,9 @@
 .sobre-bg{
   min-height:100vh;
   padding:150px 0 80px;
-  background:linear-gradient(160deg,#ece9e7,#cac5c2 45%,#a19a97 75%,#847d7a);
+  background:linear-gradient(135deg,#fff,#cecdcd);
 }
+
 
 .sobre-card{
   background:#fdfaf8;
