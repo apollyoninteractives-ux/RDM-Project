@@ -1,0 +1,325 @@
+/* ============================================
+   RDM Gráfica — Painel Administrativo (uploads)
+   ============================================ */
+
+:root{
+  --red:#d91c23;
+}
+
+*{
+  font-family:Inter,sans-serif;
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#fff;
+}
+
+/* ---------- Navbar do admin ---------- */
+.navbar-admin{
+  position:relative;
+  background:#111;
+  min-height:88px;
+  overflow:visible;
+}
+
+.navbar-wave{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:125px;
+  z-index:0;
+  pointer-events:none;
+}
+
+.navbar-admin-inner{
+  position:relative;
+  z-index:1;
+  max-width:1200px;
+  margin:0 auto;
+  height:88px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+}
+
+.navbar-admin-brand{
+  color:#fff;
+  font-weight:700;
+  font-size:1.3rem;
+}
+
+.navbar-admin-link{
+  color:#fff;
+  font-weight:600;
+  text-decoration:none;
+  position:relative;
+  transition:.3s;
+}
+
+.navbar-admin-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:2px;
+  background:var(--red);
+  transition:.3s;
+}
+
+.navbar-admin-link:hover:after{
+  width:100%;
+}
+
+/* ---------- Fundo geral ---------- */
+.admin-bg{
+  min-height:100vh;
+  padding:60px 0 90px;
+  background:linear-gradient(160deg,#f3f0ee,#cfc6c2 55%,#a9a09d);
+}
+
+.admin-container{
+  max-width:600px;
+  margin:0 auto;
+  padding:0 24px;
+}
+
+.admin-title{
+  font-size:1.2rem;
+  font-weight:700;
+  color:#111;
+  margin-bottom:14px;
+}
+
+/* ---------- Cards ---------- */
+.admin-card{
+  background:linear-gradient(135deg,#dcdcdc 0%,#b6b6b6 55%,#a0a0a0 100%);
+  border:1px solid #8f8f8f;
+  border-radius:16px;
+  padding:30px;
+  box-shadow:0 2px 6px rgba(0,0,0,.1), 0 14px 30px rgba(0,0,0,.18);
+  margin-bottom:36px;
+}
+
+.admin-card .row{
+  row-gap:24px;
+}
+
+/* Colunas ficam com a mesma altura (a maior define a altura da linha)
+   e cada uma decide como usar esse espaço internamente. */
+.admin-col-upload{
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.admin-col-form{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  height:100%;
+}
+
+.admin-field-group{
+  width:100%;
+}
+
+.admin-field-group + .admin-field-group{
+  margin-top:18px;
+}
+
+.admin-field-inline{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.admin-field-inline .admin-label{
+  flex-shrink:0;
+}
+
+/* Botão sempre ancorado na base da coluna e alinhado à esquerda —
+   acompanha a borda esquerda dos campos acima dele. */
+.admin-col-form .btn-admin{
+  margin-top:auto;
+  align-self:flex-start;
+}
+
+/* ---------- Upload boxes ---------- */
+.upload-box{
+  background:linear-gradient(160deg,#e6585d,#b41920);
+  border:1px solid rgba(0,0,0,.25);
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
+
+.upload-box:hover{
+  filter:brightness(1.08);
+  transform:translateY(-2px);
+  box-shadow:0 8px 18px rgba(0,0,0,.22);
+}
+
+.upload-box-solo{
+  width:120px;
+  height:120px;
+}
+
+.upload-box-large{
+  width:100%;
+  height:100%;
+  min-height:126px;
+}
+
+/* ---------- Campos ---------- */
+.admin-label{
+  display:block;
+  font-size:.85rem;
+  color:#222;
+  font-weight:600;
+  margin-bottom:8px;
+}
+
+.admin-input{
+  width:100%;
+  background:#ececea;
+  border:1px solid #8a8a8a;
+  border-radius:8px;
+  padding:10px 14px;
+  font-size:.9rem;
+  color:#222;
+  outline:none;
+  transition:.25s;
+}
+
+.admin-input:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(217,28,35,.18);
+}
+
+.admin-input-inline{
+  width:auto;
+  flex:1;
+  min-width:0;
+  border-radius:50px;
+  padding:7px 16px;
+}
+
+/* ---------- Botões ---------- */
+.btn-admin{
+  background:#f2f0ee;
+  border:2px solid var(--red);
+  color:var(--red);
+  font-weight:700;
+  padding:9px 34px;
+  font-size:.9rem;
+  border-radius:50px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 3px 8px rgba(0,0,0,.12);
+}
+
+.btn-admin:hover{
+  background:var(--red);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 12px 22px rgba(217,28,35,.35);
+}
+
+.btn-admin:active{
+  transform:translateY(0);
+}
+
+.btn-admin-sm{
+  padding:3px 16px;
+  font-size:.75rem;
+  box-shadow:none;
+}
+
+.btn-admin-sm:hover{
+  box-shadow:0 6px 14px rgba(217,28,35,.3);
+}
+
+/* ---------- Listagem de uploads ---------- */
+.admin-card-list{
+  background:linear-gradient(135deg,#dcdcdc 0%,#b6b6b6 55%,#a0a0a0 100%);
+  padding:0;
+  overflow:hidden;
+}
+
+.upload-list-wrap{
+  display:flex;
+  max-height:300px;
+  overflow-y:auto;
+}
+
+.upload-list{
+  list-style:none;
+  margin:0;
+  padding:20px 22px;
+  flex:1 1 55%;
+  border-right:1px solid rgba(0,0,0,.25);
+  min-width:0;
+}
+
+.upload-preview{
+  flex:1 1 45%;
+}
+
+.upload-list:empty::after{
+  content:"Nenhum upload ainda.";
+  display:block;
+  color:#666;
+  font-style:italic;
+  font-size:.82rem;
+  padding-top:6px;
+}
+
+.upload-list li{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:9px 0;
+  border-bottom:1px solid rgba(0,0,0,.12);
+  font-style:italic;
+  color:#333;
+  font-size:.88rem;
+}
+
+.upload-list li:last-child{
+  border-bottom:none;
+}
+
+.upload-list-wrap::-webkit-scrollbar{
+  width:8px;
+}
+
+.upload-list-wrap::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.upload-list-wrap::-webkit-scrollbar-thumb{
+  background:#8f8f8f;
+  border-radius:8px;
+}
+
+/* ---------- Animação de scroll (mesma do site) ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:.8s;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:none;
+}

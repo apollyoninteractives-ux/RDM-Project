@@ -1,0 +1,73 @@
+/* ============================================
+   RDM Gráfica — Feedback dos usuários
+   (usa dashboard.css como base; aqui só o que é
+   específico da listagem de feedback)
+   ============================================ */
+
+.feedback-list{
+  list-style:none;
+  margin:0;
+  padding:20px 22px;
+  max-height:480px;
+  overflow-y:auto;
+}
+
+.feedback-list:empty::after{
+  content:"Nenhum feedback recebido ainda.";
+  display:block;
+  color:#666;
+  font-style:italic;
+  font-size:.85rem;
+  padding:10px 0;
+}
+
+.feedback-list li{
+  background:rgba(255,255,255,.35);
+  border:1px solid rgba(0,0,0,.12);
+  border-radius:10px;
+  padding:14px 16px;
+  margin-bottom:14px;
+}
+
+.feedback-list li:last-child{
+  margin-bottom:0;
+}
+
+.feedback-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+}
+
+.feedback-nome{
+  font-weight:700;
+  color:#111;
+  font-size:.92rem;
+}
+
+.feedback-data{
+  color:#555;
+  font-size:.78rem;
+}
+
+.feedback-mensagem{
+  color:#333;
+  font-size:.9rem;
+  line-height:1.5;
+  margin:0 0 12px;
+}
+
+.feedback-list::-webkit-scrollbar{
+  width:8px;
+}
+
+.feedback-list::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.feedback-list::-webkit-scrollbar-thumb{
+  background:#8f8f8f;
+  border-radius:8px;
+}
