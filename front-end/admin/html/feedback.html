@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback dos Usuários | RDM Gráfica</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="../css/dashboard (1).css" rel="stylesheet">
+<link href="../css/feedback.css" rel="stylesheet">
+</head>
+<body>
+
+<!--
+  ATENÇÃO — esta página só deve ficar visível pro admin logado.
+  Colocar num caminho "escondido" e tirar do menu público NÃO é
+  proteção de verdade: qualquer pessoa que descubra a URL consegue
+  acessar. A proteção real precisa vir do back-end (verificar sessão/
+  token antes de responder essa página, junto com login.html).
+  O script abaixo é só um placeholder de exemplo, não é segurança.
+-->
+<script>
+if(!sessionStorage.getItem('rdmAdminLogado')){
+  // window.location.href = 'login.html';
+}
+</script>
+
+<nav class="navbar-admin">
+<svg class="navbar-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" preserveAspectRatio="none">
+<path d="M0,0 L1440,0 L1440,100 C1260,140 1080,80 900,115 C720,150 540,85 360,118 C240,140 120,100 0,120 Z" fill="#d91c23"/>
+<path d="M0,0 L1440,0 L1440,88 C1260,128 1080,68 900,103 C720,138 540,73 360,106 C240,128 120,88 0,108 Z" fill="#111"/>
+</svg>
+<div class="navbar-admin-inner">
+<span class="navbar-admin-brand">RDM Admin</span>
+<a href="dashboard.html" class="navbar-admin-link">Painel</a>
+</div>
+</nav>
+
+<main class="admin-bg">
+<div class="admin-container">
+
+<section class="reveal">
+<h2 class="admin-title">Feedback dos usuários</h2>
+<div class="admin-card admin-card-list">
+<ul id="listaFeedbacks" class="feedback-list">
+<!-- Preenchido via JavaScript, um item por feedback recebido -->
+</ul>
+</div>
+</section>
+
+</div>
+</main>
+
+<script>
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting) entry.target.classList.add('active');
+});
+});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+<script>
+// A listagem de feedbacks é montada dinamicamente aqui, buscando os
+// dados que os usuários enviaram pelo formulário de feedback do site.
+//
+// Formato esperado de cada feedback (ajuste conforme o back-end):
+// { nome: 'Fulano', mensagem: 'Adorei o atendimento!', data: '2026-07-20' }
+//
+// Exemplo de como inserir um item na lista:
+//
+// const li = document.createElement('li');
+// li.innerHTML = `
+//   <div class="feedback-header">
+//     <span class="feedback-nome">${nome}</span>
+//     <span class="feedback-data">${data}</span>
+//   </div>
+//   <p class="feedback-mensagem">${mensagem}</p>
+//   <button class="btn-admin btn-admin-sm">excluir</button>
+// `;
+// document.getElementById('listaFeedbacks').appendChild(li);
+</script>
+</body>
+</html>

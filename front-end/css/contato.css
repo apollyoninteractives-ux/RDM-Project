@@ -1,8 +1,28 @@
 /* ============================================
    RDM Gráfica — Contato
-   (usa home.css e sobre.css como base; aqui só
-   o que é específico desta página)
+   (usa home.css como base; o resto é
+   independente — não depende de sobre.css)
    ============================================ */
+
+.contato-bg{
+  position:relative;
+  min-height:100vh;
+  padding:150px 0 80px;
+  background:linear-gradient(160deg,#ece9e7,#cac5c2 45%,#a19a97 75%,#847d7a);
+}
+
+.contato-card{
+  background:#fdfaf8;
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  margin-bottom:35px;
+}
+
+.contato-card p{
+  color:#333;
+  line-height:1.7;
+}
 
 .contato-social{
   margin-bottom:10px;
