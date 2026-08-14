@@ -11,6 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link href="../css/dashboard.css" rel="stylesheet">
+    <link href="../css/auth-guard.css" rel="stylesheet">
+    <!--
+      Proteção real desta página: enquanto o auth-guard.js não confirmar
+      que existe um admin logado no Firebase, o CSS acima mantém a página
+      inteira invisível (evita "piscar" conteúdo admin antes do redirect).
+    -->
+    <script type="module" src="../js/auth-guard.js"></script>
 </head>
 
 <body>
@@ -32,6 +39,7 @@
                 <ul class="navbar-nav ms-auto gap-3">
                     <li class="nav-item"><a class="nav-link" href="../../html/home.html">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="feedback.html">Feedback</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="btnLogout">Sair</a></li>
                 </ul>
             </div>
         </div>
@@ -159,6 +167,13 @@
         // const li = document.createElement('li');
         // li.innerHTML = `<span>${nomeDoArquivo}</span><button class="btn-admin btn-admin-sm">excluir</button>`;
         // document.getElementById('listaUploads').appendChild(li);
+    </script>
+    <script type="module">
+        import { logoutAdmin } from "../js/auth-guard.js";
+        document.getElementById("btnLogout").addEventListener("click", (e) => {
+            e.preventDefault();
+            logoutAdmin();
+        });
     </script>
 </body>
 
