@@ -1,6 +1,6 @@
 /* Esconde a página inteira até o auth-guard.js confirmar que existe um
-   admin logado. Sem isso, o conteúdo admin "pisca" na tela por uma
-   fração de segundo antes do redirecionamento pro login. */
+  admin logado. Sem isso, o conteúdo admin "pisca" na tela por uma
+  fração de segundo antes do redirecionamento pro login. */
 html:not(.auth-ok){
-  visibility:hidden;
+visibility:hidden;
 }
