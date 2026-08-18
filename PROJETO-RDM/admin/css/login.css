@@ -4,13 +4,10 @@
     pelo dono/admin para acessar a área de upload.
     ============================================ */
 
-<<<<<<< HEAD
-=======
   :root{
     --red:#d91c23;
   }
 
->>>>>>> 7a6d29f6f1a94f3aa47f5e1ca497e75065db3cfd
   *{
     font-family:Inter,sans-serif;
     box-sizing:border-box;

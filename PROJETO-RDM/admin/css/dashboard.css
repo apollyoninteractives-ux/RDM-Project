@@ -2,13 +2,10 @@
   RDM Gráfica — Painel Administrativo (uploads)
   ============================================ */
 
-<<<<<<< HEAD
-=======
 :root{
 --red:#d91c23;
 }
 
->>>>>>> 7a6d29f6f1a94f3aa47f5e1ca497e75065db3cfd
 *{
 font-family:Inter,sans-serif;
 box-sizing:border-box;
@@ -34,8 +31,6 @@ backdrop-filter:blur(12px);
 box-shadow:0 10px 30px rgba(0,0,0,.15);
 }
 
-<<<<<<< HEAD
-=======
 .navbar-wave{
 position:absolute;
 top:0;
@@ -46,7 +41,6 @@ z-index:-1;
 pointer-events:none;
 }
 
->>>>>>> 7a6d29f6f1a94f3aa47f5e1ca497e75065db3cfd
 .nav-link{
 position:relative;
 transition:.3s;
@@ -156,7 +150,6 @@ gap:10px;
 flex-shrink:0;
 }
 
-<<<<<<< HEAD
 /* Variante empilhada (substitui o style inline que existia no HTML) */
 .admin-field-inline--stacked{
 display:flex;
@@ -165,8 +158,6 @@ align-items:flex-start;
 margin-left:32px;
 }
 
-=======
->>>>>>> 7a6d29f6f1a94f3aa47f5e1ca497e75065db3cfd
 /* Botão sempre ancorado na base da coluna e alinhado à esquerda —
   acompanha a borda esquerda dos campos acima dele. */
 .admin-col-form .btn-admin{
@@ -343,15 +334,11 @@ opacity:0;
 transform:translateY(30px);
 transition:.8s;
 }
-
-<<<<<<< HEAD
-=======
 .reveal.active{
 opacity:1;
 transform:none;
 }
 
->>>>>>> 7a6d29f6f1a94f3aa47f5e1ca497e75065db3cfd
 /* ---------- Responsividade ---------- */
 
 @media (max-width: 600px) {
