@@ -1,0 +1,86 @@
+  /* ===========================================
+    RDM Gráfica — Contato
+    (usa home.css como base; o resto é
+    independente — não depende de sobre.css)
+    =========================================== */
+
+  .contato-bg{
+    position:relative;
+    min-height:100vh;
+    padding:150px 0 80px;
+    background:linear-gradient(135deg,#fff,#cecdcd);
+  }
+
+
+  .contato-card{
+    background:#fdfaf8;
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    margin-bottom:35px;
+  }
+
+  .contato-card p{
+    color:#333;
+    line-height:1.7;
+  }
+
+  .contato-social{
+    margin-bottom:10px;
+  }
+
+  .contato-social-row{
+    display:flex;
+    justify-content:center;
+    gap:48px;
+    margin-top:24px;
+    flex-wrap:wrap;
+  }
+
+  .contato-social-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    transition:.3s;
+  }
+
+  .contato-social-item:hover{
+    transform:translateY(-4px);
+  }
+
+  .contato-icon{
+    width:84px;
+    height:84px;
+    border-radius:50%;
+    background:linear-gradient(160deg,#e6585d,#b41118);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 18px rgba(0,0,0,.18);
+  }
+
+  .contato-label{
+    color:var(--red);
+    font-weight:700;
+    font-size:.95rem;
+    text-transform:lowercase;
+  }
+
+  .contato-endereco p{
+    color:#333;
+    font-weight:600;
+    margin:0 0 6px;
+  }
+
+  .contato-mapa{
+    margin-top:20px;
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+  }
+
+  .contato-mapa iframe{
+    display:block;
+  }
