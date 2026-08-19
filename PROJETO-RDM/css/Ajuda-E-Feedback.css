@@ -15,7 +15,7 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
-min-height:90px;
+min-height:88px;
 display:flex;
 align-items:center;
 background:rgba(17,17,17,.88);
@@ -24,7 +24,7 @@ box-shadow:0 10px 30px rgba(0,0,0,.2);
 z-index:1000;
 }
 .navbar-brand{
-margin-top:20px;
+margin-top:25px;
 letter-spacing:2px;
 }
 .nav-link{
