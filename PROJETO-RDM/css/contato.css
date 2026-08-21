@@ -1,13 +1,13 @@
   /* ===========================================
     RDM Gráfica — Contato
-    (usa home.css como base; o resto é
+    (usa global.css como base; o resto é
     independente — não depende de sobre.css)
     =========================================== */
 
   .contato-bg{
     position:relative;
     min-height:100vh;
-    padding:150px 0 80px;
+    padding:calc(var(--nav-height) + 62px) 0 80px;
     background:linear-gradient(135deg,#fff,#cecdcd);
   }
 

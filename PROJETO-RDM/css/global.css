@@ -3,6 +3,16 @@
   Estilos e variáveis compartilhados por TODAS as
   páginas (site público + painel admin). Deve ser
   carregado antes do CSS específico de cada página.
+
+  Inclui também o antigo css/home.css: como home.css
+  era, na prática, a base visual usada (ou esperada)
+  por sobre.css, contato.css e ajuda-e-feedback.css,
+  ele foi unificado aqui para garantir que hero, botões,
+  seções, cards, estatísticas, rodapé e animação de
+  reveal fiquem consistentes em TODAS as páginas —
+  antes, páginas que não carregavam home.css (sobre,
+  contato) ficavam sem estilo de rodapé/título de
+  seção/reveal.
   ============================================ */
 
 :root{
@@ -12,20 +22,366 @@
 --light:#f8f9fa;
 --gray:#ececec;
 --shadow:0 15px 35px rgba(0,0,0,.12);
+--nav-height:88px;
+--nav-height-mobile:76px;
+--nav-wave-height:145px;
+--nav-wave-height-mobile:130px;
 }
 
-/* ---------- Navbar (onda decorativa idêntica em todas as páginas) ---------- */
+/* ---------- Base / tipografia ----------
+  Antes vivia em home.css e só era aplicada na home. */
+*{
+font-family:Inter,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#fff;
+overflow-x:hidden;
+}
+
+dl, ol, ul{
+margin-top:25px;
+}
+
+@media (max-width:600px){
+dl, ol, ul{
+margin-top:45px;
+}
+}
+
+/* ---------- Correção de layout ----------
+  Reserva sempre o espaço da barra de rolagem vertical,
+  mesmo em páginas curtas que não teriam scroll.
+  Sem isso, cada página pode ter uma largura útil de tela
+  diferente (com/sem scrollbar), o que empurra a navbar
+  (fixed, alinhada à direita) alguns pixels para o lado
+  dependendo da página. */
+html{
+overflow-y:scroll;
+}
+
+/* ==================================================================
+   NAVBAR — bloco único, usado por TODAS as páginas (site público
+   e admin). Regras de navbar SÓ existem aqui — nenhum outro CSS
+   deste projeto deve declarar .navbar-rdm, .navbar-wave,
+   .navbar-brand, .nav-link etc. Isso é o que causava as páginas
+   "brigando" entre si: cada uma reescrevia um pedaço diferente
+   do mesmo componente.
+
+   O HTML da navbar também deve ser idêntico em todas as páginas
+   (mesma estrutura de nó, mudando só a marca/links do menu) —
+   veja o modelo no final deste bloco.
+   ================================================================== */
+
+.navbar-rdm{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+z-index:1000;
+min-height:var(--nav-height);
+background:rgba(17,17,17,.9);
+backdrop-filter:blur(15px);
+-webkit-backdrop-filter:blur(15px);
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+/* O Bootstrap já deixa .navbar>.container em flex/space-between;
+   aqui só garantimos a altura mínima e travamos por cima da
+   svg decorativa (que fica com z-index negativo). */
+.navbar-rdm>.container,
+.navbar-rdm>.container-fluid{
+position:relative;
+z-index:1;
+min-height:var(--nav-height);
+}
+
 .navbar-wave{
 position:absolute;
 top:0;
 left:0;
 width:100%;
-height:145px;
+height:var(--nav-wave-height);
 z-index:-1;
 pointer-events:none;
 }
 
+.navbar-rdm .navbar-brand{
+position:relative;
+z-index:1;
+margin:0;
+font-weight:700;
+font-size:1.5rem;
+color:#fff!important;
+}
+
+.navbar-rdm .navbar-toggler{
+position:relative;
+z-index:1;
+border:none;
+padding:.25rem .5rem;
+box-shadow:none!important;
+}
+
+.navbar-rdm .navbar-nav{
+gap:.75rem;
+align-items:center;
+}
+
+.navbar-rdm .nav-link{
+position:relative;
+z-index:1;
+display:inline-flex;
+align-items:center;
+height:100%;
+font-weight:500;
+line-height:1;
+padding-top:.4rem;
+padding-bottom:.4rem;
+color:rgba(255,255,255,.85)!important;
+transition:.3s;
+}
+
+.navbar-rdm .nav-link:after{
+content:"";
+position:absolute;
+left:0;
+bottom:0;
+width:0;
+height:3px;
+background:var(--red);
+border-radius:20px;
+transition:.3s;
+}
+
+.navbar-rdm .nav-link:hover{
+color:#fff!important;
+}
+
+.navbar-rdm .nav-link:hover:after,
+.navbar-rdm .nav-link.active:after{
+width:100%;
+}
+
+/* Os links (ul.navbar-nav) agora carregam .collapse.navbar-collapse
+   diretamente — sem uma div separada por fora. Isso significa que
+   o próprio <ul> é o elemento que o botão-hambúrguer mostra/esconde
+   no mobile (via data-bs-target="#menu"), então o toggle continua
+   funcionando normalmente mesmo sem aquele wrapper. */
+
+/* Telas grandes (menu nunca fica colapsado): centraliza os links
+   de forma absoluta no meio da navbar, independente da marca/botão,
+   garantindo que fiquem todos na mesma altura e sem inclinação. */
+@media (min-width:992px){
+.navbar-rdm .navbar-nav{
+position:absolute;
+left:50%;
+transform:translate(-50%,-50%);
+flex-direction:row;
+}
+}
+
+/* Menu mobile (colapsado): precisa de fundo sólido próprio.
+   Sem isso, ao abrir o menu no celular, os links ficam boiando
+   por cima do conteúdo da página (o blur/fundo escuro só cobre
+   os 88px da barra, não a lista de links que abre embaixo). */
+@media (max-width:991.98px){
+.navbar-rdm .navbar-collapse{
+background:rgba(17,17,17,.97);
+margin:12px -1rem -1px;
+padding:1rem 1rem 1.25rem;
+border-radius:0 0 16px 16px;
+box-shadow:0 20px 30px rgba(0,0,0,.25);
+align-items:stretch;
+}
+.navbar-rdm .navbar-nav{
+gap:.25rem;
+}
+.navbar-rdm .nav-link{
+height:auto;
+padding:.6rem .25rem;
+}
+.navbar-rdm .nav-link:after{
+display:none;
+}
+}
+
+@media (max-width:768px){
+:root{
+--nav-height:var(--nav-height-mobile);
+--nav-wave-height:var(--nav-wave-height-mobile);
+}
+}
+
+/* Espaçamento reservado no topo de cada página, para o conteúdo
+   nunca ficar escondido atrás da navbar fixa. Toda página deve
+   aplicar esta classe (ou somar var(--nav-height) ao próprio
+   padding-top) no primeiro bloco visível depois da navbar. */
+.pt-navbar{
+padding-top:var(--nav-height);
+}
+/* ============ fim do bloco NAVBAR ============= */
+
+/* ==================================================================
+   HERO, BOTÕES, SEÇÕES, CARDS, ESTATÍSTICAS E RODAPÉ — vindo de
+   home.css. Páginas específicas (ex.: ajuda-e-feedback.css) podem
+   sobrescrever qualquer regra abaixo; como o CSS de cada página é
+   carregado DEPOIS deste arquivo, o override continua funcionando
+   normalmente.
+   ================================================================== */
+
+.carousel-item img{
+height:450px;
+object-fit:cover;
+object-position:center;
+}
+
+/* ---------- Hero ---------- */
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+padding:calc(var(--nav-height) + 32px) 0 80px;
+background:linear-gradient(135deg,#fff,#f4f4f4);
+}
+.hero img,
+.portfolio-img,
+.carousel-item img{
+transition:.5s;
+}
+
+.hero img:hover,
+.portfolio-img:hover{
+transform:translateY(-8px);
+}
+
+.portfolio-img{
+width:100%;
+height:280px;
+object-fit:cover;
+object-position:center;
+}
+
+.hero-titulo{
+font-size:clamp(2.5rem,5vw,4.5rem);
+font-weight:800;
+line-height:1.1;
+}
+
+.hero-texto{
+font-size:1.15rem;
+color:#555;
+}
+
+/* ---------- Botões ---------- */
+.btn-rdm{
+background:var(--red);
+color:#fff;
+border:none;
+padding:14px 28px;
+border-radius:14px;
+transition:.3s;
+}
+
+.btn-rdm:hover{
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(217,28,35,.25);
+color:var(--red);
+}
+
+.btn-rdm-outline{
+border:2px solid var(--red);
+color:var(--red);
+border-radius:14px;
+padding:12px 24px;
+transition:.3s;
+}
+
+.btn-rdm-outline:hover{
+background:var(--red);
+color:#ffffff;
+}
+
+.btn.btn-rdm.mt-2:hover{
+background:transparent;
+color:#fff;
+transform:translateY(-3px);
+box-shadow:0 15px 30px rgba(0, 0, 0, 0.589);
+}
+
+/* ---------- Seções gerais ---------- */
+section{
+padding:100px 0;
+}
+
+.section-title{
+font-size:2.5rem;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.cinza{
+background:#f6f6f6;
+}
+
+.cinza-escuro{
+background:#ececec;
+}
+
+/* ---------- Cards ---------- */
+.card-encomenda,
+.service-card{
+background:#fff;
+border-radius:24px;
+padding:30px;
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+transition:.3s;
+height:100%;
+}
+
+.service-card:hover,
+.card-encomenda:hover{
+transform:translateY(-8px);
+}
+
+/* ---------- Estatísticas ---------- */
+.stats{
+background:#111;
+color:#fff;
+}
+
+.stat-number{
+font-size:3rem;
+font-weight:800;
+color:var(--red);
+}
+
+/* ---------- Rodapé ---------- */
+.rodape{
+position:relative;
+padding-top:120px;
+overflow:hidden;
+background:#111;
+color:#fff;
+padding-bottom:70px;
+}
+
+.footer-wave{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:90px;
+}
+
 /* ---------- Animação de scroll (estado final idêntico em todas as páginas) ---------- */
+.reveal{
+opacity:0;
+transform:translateY(30px);
+transition:.8s;
+}
+
 .reveal.active{
 opacity:1;
 transform:none;
