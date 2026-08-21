@@ -16,12 +16,6 @@
 Proteção real desta página: enquanto o auth-guard.js não confirmar
 que existe um admin logado no Firebase, o CSS acima mantém a página
 inteira invisível (evita "piscar" conteúdo admin antes do redirect).
-
-ATENÇÃO — esta página só deve ficar visível pro admin logado.
-Colocar num caminho "escondido" e tirar do menu público NÃO é
-proteção de verdade: qualquer pessoa que descubra a URL consegue
-acessar. A proteção real precisa vir do back-end (verificar sessão/
-token antes de responder essa página, junto com login.html).
 -->
 <script type="module" src="../js/auth-guard.js"></script>
 </head>
