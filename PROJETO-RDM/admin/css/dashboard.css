@@ -1,18 +1,11 @@
 /* ============================================
   RDM Gráfica — Painel Administrativo (uploads)
+  (usa global.css como base: --red, font-family e
+  box-sizing globais já vêm de lá; body{margin:0}
+  também já vem do reset do Bootstrap)
   ============================================ */
 
-:root{
---red:#d91c23;
-}
-
-*{
-font-family:Inter,sans-serif;
-box-sizing:border-box;
-}
-
 body{
-margin:0;
 background:#fff;
 }
 
@@ -89,24 +82,6 @@ width:100%;
 
 .admin-field-group + .admin-field-group{
 margin-top:18px;
-}
-
-.admin-field-inline{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.admin-field-inline .admin-label{
-flex-shrink:0;
-}
-
-/* Variante empilhada (substitui o style inline que existia no HTML) */
-.admin-field-inline--stacked{
-display:flex;
-flex-direction:column;
-align-items:flex-start;
-margin-left:32px;
 }
 
 /* Botão sempre ancorado na base da coluna e alinhado à esquerda —
@@ -279,13 +254,6 @@ background:#8f8f8f;
 border-radius:8px;
 }
 
-/* ---------- Animação de scroll (mesma do site) ---------- */
-.reveal{
-opacity:0;
-transform:translateY(30px);
-transition:.8s;
-}
-.reveal.active{
-opacity:1;
-transform:none;
-}
+/* Animação de scroll (.reveal / .reveal.active) agora vem só de
+  global.css — antes estava duplicada aqui, exatamente do mesmo
+  jeito que home.css duplicava o site público. */

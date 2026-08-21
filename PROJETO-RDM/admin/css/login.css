@@ -2,21 +2,10 @@
     RDM Gráfica — Login Administrativo
     Página isolada do site público, usada só
     pelo dono/admin para acessar a área de upload.
+    (usa global.css como base: --red, font-family e
+    box-sizing globais já vêm de lá; body{margin:0}
+    também já vem do reset do Bootstrap)
     ============================================ */
-
-  :root{
-    --red:#d91c23;
-  }
-
-  *{
-    font-family:Inter,sans-serif;
-    box-sizing:border-box;
-  }
-
-  body{
-    margin:0;
-  }
-
 
   .visually-hidden{
     color:white;
