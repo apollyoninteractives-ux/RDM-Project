@@ -84,3 +84,16 @@
   .contato-mapa iframe{
     display:block;
   }
+
+  .contato-mapa-link a{
+    color:var(--red);
+    font-weight:600;
+    font-size:.9rem;
+    text-decoration:none;
+    transition:.3s;
+  }
+
+  .contato-mapa-link a:hover{
+    color:var(--red-dark);
+    text-decoration:underline;
+  }

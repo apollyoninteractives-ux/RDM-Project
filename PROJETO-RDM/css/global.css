@@ -80,7 +80,7 @@ top:0;
 left:0;
 width:100%;
 z-index:1000;
-min-height:var(--nav-height);
+max-height:var(--nav-height);
 background:rgba(17,17,17,.9);
 backdrop-filter:blur(15px);
 -webkit-backdrop-filter:blur(15px);
@@ -98,14 +98,15 @@ min-height:var(--nav-height);
 }
 
 .navbar-wave{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:var(--nav-wave-height);
-z-index:-1;
-pointer-events:none;
-}
+   position:absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:var(--nav-wave-height);
+   z-index:-1;
+   pointer-events:none;
+   filter:drop-shadow(0 10px 14px rgba(0, 0, 0, 0.281));
+   }
 
 .navbar-rdm .navbar-brand{
 position:relative;
