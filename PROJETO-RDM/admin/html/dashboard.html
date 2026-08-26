@@ -86,8 +86,8 @@
                     <div class="d-flex flex-row">
                         <div class="col-md-5 admin-col-upload">
                             <label class="upload-box upload-box-solo">
-                                <input type="file" name="encomendaFinalizada" accept="image/*" hidden
-                                    class="upload-input">
+                                <input type="file" id="fileEncomenda" name="encomendaFinalizada" accept="image/*"
+                                    hidden class="upload-input">
                                 <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff"
                                     stroke-width="2">
                                     <path d="M12 19V5M5 12l7-7 7 7" />
@@ -100,14 +100,14 @@
                             <div class="admin-field-group">
                                 <label for="descricaoEncomenda" class="admin-label">Descrição:</label>
                                 <input type="text" id="descricaoEncomenda" name="descricaoEncomenda"
-                                    class="admin-input">
+                                    class="admin-input" placeholder="Ex: Camiseta estampada para evento">
                             </div>
                             <div class="admin-field-group admin-field-inline admin-field-inline--stacked">
                                 <label for="dataUploadEncomenda" class="admin-label mb-0">Data Do Upload:</label>
                                 <input type="date" id="dataUploadEncomenda" name="dataUploadEncomenda"
                                     class="admin-input">
                             </div>
-                            <button type="button" class="btn-admin">enviar</button>
+                            <button type="button" id="btnEnviarEncomenda" class="btn-admin">enviar</button>
                         </div>
                     </div>
                 </div>
@@ -132,6 +132,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../js/reveal.js"></script>
 <script src="../js/dashboard.js"></script>
+<script type="module" src="../js/encomendas.js"></script>
 <script type="module" src="../js/logout.js"></script>
 </body>
 
