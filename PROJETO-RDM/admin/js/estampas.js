@@ -1,15 +1,13 @@
-// Liga a seção "Encomendas finalizadas" do painel admin ao Firebase.
+// Liga a seção "Estampas" do painel admin ao Firebase.
 //
-// - Ao clicar em "enviar": a imagem é redimensionada/comprimida no próprio
-//   navegador e salva, junto com a descrição e a data, como um único
-//   documento na coleção "encomendas" do Firestore.
-//   (Não usa o Firebase Storage — só o Firestore, que é o mesmo serviço já
-//   usado pelo formulário de Ajuda e Feedback. Isso evita depender de o
-//   Storage estar provisionado/configurado no projeto do Firebase.)
-// - A página pública (html/encomendas.html) lê essa mesma coleção pra
-//   montar os cards do "Histórico de Encomendas".
-// - Também preenche a "Listagem de Uploads" aqui do painel, com botão
-//   de excluir.
+// Segue exatamente o mesmo padrão de admin/js/encomendas.js:
+// - A imagem é redimensionada/comprimida no navegador e salva, junto com a
+//   descrição e a data, como um único documento na coleção "estampas" do
+//   Firestore (sem depender do Firebase Storage).
+// - A página pública (html/estampas.html) lê essa mesma coleção pra montar
+//   a galeria de estampas e o modal de simulação com IA.
+// - Também preenche a "Listagem de Estampas" aqui do painel, com botão de
+//   excluir.
 
 import { db } from "./firebase.js";
 import {
@@ -23,15 +21,15 @@ import {
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const fileInput = document.getElementById("fileEncomenda");
-const descricaoInput = document.getElementById("descricaoEncomenda");
-const dataInput = document.getElementById("dataUploadEncomenda");
-const btnEnviar = document.getElementById("btnEnviarEncomenda");
+const fileInput = document.getElementById("fileEstampa");
+const descricaoInput = document.getElementById("descricaoEstampa");
+const dataInput = document.getElementById("dataUploadEstampa");
+const btnEnviar = document.getElementById("btnEnviarEstampa");
 const statusSpan = fileInput?.closest(".admin-col-upload")?.querySelector(".upload-status");
-const listaUploads = document.getElementById("listaUploads");
-const uploadPreview = document.getElementById("previewEncomendas");
+const listaEstampas = document.getElementById("listaEstampas");
+const uploadPreview = document.getElementById("previewEstampas");
 
-const encomendasCollection = collection(db, "encomendas");
+const estampasCollection = collection(db, "estampas");
 
 // Documentos do Firestore têm limite de ~1MB. Redimensionamos e comprimimos
 // a imagem no navegador antes de salvar, pra caber com folga nesse limite.
@@ -96,17 +94,17 @@ function converterImagemParaDataURL(arquivo) {
     });
 }
 
-async function enviarEncomenda() {
+async function enviarEstampa() {
     const arquivo = fileInput?.files?.[0];
     const descricao = descricaoInput?.value.trim();
     const data = dataInput?.value;
 
     if (!arquivo) {
-        alert("Selecione uma imagem da encomenda.");
+        alert("Selecione uma imagem da estampa.");
         return;
     }
     if (!descricao) {
-        alert("Preencha a descrição da encomenda.");
+        alert("Preencha a descrição da estampa.");
         return;
     }
     if (!data) {
@@ -121,14 +119,14 @@ async function enviarEncomenda() {
     try {
         const imagemUrl = await converterImagemParaDataURL(arquivo);
 
-        await addDoc(encomendasCollection, {
+        await addDoc(estampasCollection, {
             imagemUrl,
             descricao,
             data,
             criadoEm: serverTimestamp()
         });
 
-        alert("Encomenda enviada com sucesso!");
+        alert("Estampa enviada com sucesso!");
 
         fileInput.value = "";
         descricaoInput.value = "";
@@ -141,64 +139,64 @@ async function enviarEncomenda() {
         carregarListagem();
 
     } catch (erro) {
-        console.error("Erro ao enviar encomenda:", erro);
-        alert(`Erro ao enviar a encomenda: ${erro.message || "tente novamente."}`);
+        console.error("Erro ao enviar estampa:", erro);
+        alert(`Erro ao enviar a estampa: ${erro.message || "tente novamente."}`);
     } finally {
         btnEnviar.disabled = false;
         btnEnviar.textContent = textoOriginal;
     }
 }
 
-async function excluirEncomenda(id) {
-    if (!confirm("Excluir esta encomenda da listagem pública?")) return;
+async function excluirEstampa(id) {
+    if (!confirm("Excluir esta estampa da galeria pública?")) return;
 
     try {
-        await deleteDoc(doc(db, "encomendas", id));
+        await deleteDoc(doc(db, "estampas", id));
         carregarListagem();
     } catch (erro) {
-        console.error("Erro ao excluir encomenda:", erro);
-        alert(`Erro ao excluir a encomenda: ${erro.message || "tente novamente."}`);
+        console.error("Erro ao excluir estampa:", erro);
+        alert(`Erro ao excluir a estampa: ${erro.message || "tente novamente."}`);
     }
 }
 
 async function carregarListagem() {
-    if (!listaUploads) return;
+    if (!listaEstampas) return;
 
-    listaUploads.innerHTML = "";
+    listaEstampas.innerHTML = "";
 
     try {
-        const snap = await getDocs(query(encomendasCollection, orderBy("criadoEm", "desc")));
+        const snap = await getDocs(query(estampasCollection, orderBy("criadoEm", "desc")));
 
         if (snap.empty) {
             return;
         }
 
         snap.forEach(docSnap => {
-            const encomenda = docSnap.data();
+            const estampa = docSnap.data();
 
             const li = document.createElement("li");
             li.innerHTML = `
-                <span>${encomenda.descricao} — ${formatarData(encomenda.data)}</span>
+                <span>${estampa.descricao} — ${formatarData(estampa.data)}</span>
                 <button type="button" class="btn-admin btn-admin-sm">excluir</button>
             `;
 
             li.addEventListener("mouseenter", () => {
                 if (uploadPreview) {
-                    uploadPreview.innerHTML = `<img src="${encomenda.imagemUrl}" alt="${encomenda.descricao}" class="upload-preview-img">`;
+                    uploadPreview.innerHTML = `<img src="${estampa.imagemUrl}" alt="${estampa.descricao}" class="upload-preview-img">`;
                 }
             });
 
             li.querySelector("button").addEventListener("click", () => {
-                excluirEncomenda(docSnap.id);
+                excluirEstampa(docSnap.id);
             });
 
-            listaUploads.appendChild(li);
+            listaEstampas.appendChild(li);
         });
     } catch (erro) {
-        console.error("Erro ao carregar listagem de encomendas:", erro);
+        console.error("Erro ao carregar listagem de estampas:", erro);
     }
 }
 
-btnEnviar?.addEventListener("click", enviarEncomenda);
+btnEnviar?.addEventListener("click", enviarEstampa);
 
 carregarListagem();

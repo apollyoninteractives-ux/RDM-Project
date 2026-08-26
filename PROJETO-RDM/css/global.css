@@ -85,6 +85,7 @@ background:rgba(17,17,17,.9);
 backdrop-filter:blur(15px);
 -webkit-backdrop-filter:blur(15px);
 box-shadow:0 10px 30px rgba(0,0,0,.2);
+font-size:15px;
 }
 
 /* O Bootstrap já deixa .navbar>.container em flex/space-between;
@@ -179,7 +180,7 @@ width:100%;
 position:absolute;
 left:50%;
 transform:translate(-50%,-50%);
-flex-direction:row;
+font-size: medium;
 }
 }
 

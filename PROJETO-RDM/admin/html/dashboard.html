@@ -56,25 +56,43 @@
             <div class="admin-card">
                 <div class="row g-4">
                     <div class="d-flex flex-row">
-                        <div class="col-md-6 admin-col-upload">
+                        <div class="col-md-5 admin-col-upload">
                             <label class="upload-box upload-box-solo">
-                                <input type="file" name="estampa" accept="image/*" hidden class="upload-input">
-                                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff"
+                                <input type="file" id="fileEstampa" name="estampa" accept="image/*" hidden
+                                    class="upload-input">
+                                <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff"
                                     stroke-width="2">
                                     <path d="M12 19V5M5 12l7-7 7 7" />
                                 </svg>
                             </label>
                             <span class="upload-status">Nenhum arquivo selecionado</span>
                         </div>
-                        <div class="col-md-6 admin-col-form">
+                        <div class="col-md-7 admin-col-form">
                             <div class="admin-field-group">
-                                <label for="dataUploadEstampa" class="admin-label">Data do upload</label>
+                                <label for="descricaoEstampa" class="admin-label">Descrição:</label>
+                                <input type="text" id="descricaoEstampa" name="descricaoEstampa" class="admin-input"
+                                    placeholder="Ex: Estampa floral minimalista">
+                            </div>
+                            <div class="admin-field-group admin-field-inline admin-field-inline--stacked">
+                                <label for="dataUploadEstampa" class="admin-label mb-0">Data Do Upload:</label>
                                 <input type="date" id="dataUploadEstampa" name="dataUploadEstampa"
                                     class="admin-input">
                             </div>
-                            <button type="button" class="btn-admin">enviar</button>
+                            <button type="button" id="btnEnviarEstampa" class="btn-admin">enviar</button>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="reveal">
+            <h2 class="admin-title">Listagem de Estampas:</h2>
+            <div class="admin-card admin-card-list">
+                <div class="upload-list-wrap">
+                    <ul id="listaEstampas" class="upload-list">
+                        <!-- Preenchido via JavaScript -->
+                    </ul>
+                    <div id="previewEstampas" class="upload-preview"></div>
                 </div>
             </div>
         </section>
@@ -115,13 +133,13 @@
         </section>
 
         <section class="reveal">
-            <h2 class="admin-title">Listagem de Uploads:</h2>
+            <h2 class="admin-title">Listagem de Encomendas:</h2>
             <div class="admin-card admin-card-list">
                 <div class="upload-list-wrap">
                     <ul id="listaUploads" class="upload-list">
                         <!-- Preenchido via JavaScript -->
                     </ul>
-                    <div class="upload-preview"></div>
+                    <div id="previewEncomendas" class="upload-preview"></div>
                 </div>
             </div>
         </section>
@@ -133,6 +151,7 @@
 <script src="../js/reveal.js"></script>
 <script src="../js/dashboard.js"></script>
 <script type="module" src="../js/encomendas.js"></script>
+<script type="module" src="../js/estampas.js"></script>
 <script type="module" src="../js/logout.js"></script>
 </body>
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RDM Gráfica | Estampas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="../css/global.css" rel="stylesheet">
+    <link href="../css/estampas.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-rdm fixed-top">
+        <svg class="navbar-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" preserveAspectRatio="none"
+            aria-hidden="true">
+            <path d="M0,0 L1440,0 L1440,100 C1260,122 1080,89 900,109 C720,127 540,93 360,110 C240,121 120,101 0,111 Z"
+                fill="#d91c23" />
+            <path d="M0,0 L1440,0 L1440,88 C1260,110 1080,77 900,97 C720,115 540,81 360,98 C240,109 120,89 0,99 Z"
+                fill="#ffffff" />
+            <path d="M0,0 L1440,0 L1440,81 C1260,103 1080,70 900,90 C720,108 540,74 360,91 C240,102 120,82 0,92 Z"
+                fill="#111" />
+        </svg>
+        <div class="container">
+            <a class="navbar-brand" href="./home.html">RDM</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav collapse navbar-collapse" id="menu">
+                <li class="nav-item"><a class="nav-link" href="./home.html">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="./encomendas.html">Encomendas</a></li>
+                <li class="nav-item"><a class="nav-link" href="./contato.html">Contato</a></li>
+                <li class="nav-item"><a class="nav-link" href="./sobre.html">Sobre Nós</a></li>
+                <li class="nav-item"><a class="nav-link" href="./ajuda-e-feedback.html">Ajuda e Feedback</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero reveal">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <span class="badge bg-danger px-3 py-2 mb-3">Nosso catálogo</span>
+                    <h1 class="hero-titulo">Estampas</h1>
+                    <p class="hero-texto">Navegue pelas nossas estampas disponíveis. Clique em uma delas para
+                        escolher o produto, o material e o tamanho, e gerar uma prévia com IA de como ficaria.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pb-5 reveal">
+        <div class="container">
+
+            <div id="estampasEstado" class="text-center text-muted py-4">Carregando estampas...</div>
+
+            <div id="estampasGrid" class="row g-4"></div>
+
+        </div>
+    </section>
+
+    <!-- Modal com a estampa, seleção de produto e prévia gerada por IA -->
+    <div class="modal fade" id="modalEstampa" tabindex="-1" aria-labelledby="modalEstampaLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content modal-estampa">
+                <button type="button" class="btn-close modal-estampa-close" data-bs-dismiss="modal"
+                    aria-label="Fechar"></button>
+
+                <div class="row g-0">
+
+                    <div class="col-md-5 modal-estampa-col-img">
+                        <img id="modalEstampaImg" src="" alt="" class="modal-estampa-img">
+                        <div class="modal-estampa-imgbody">
+                            <span id="modalEstampaData" class="modal-estampa-data"></span>
+                            <h3 id="modalEstampaLabel" class="modal-estampa-titulo">Detalhes da estampa</h3>
+                            <p id="modalEstampaDescricao" class="modal-estampa-descricao"></p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-7 modal-estampa-col-sim">
+                        <h4 class="modal-sim-titulo">Simule esta estampa em um produto</h4>
+                        <p class="modal-sim-sub">Escolha as opções abaixo e gere uma prévia com inteligência
+                            artificial de como a estampa ficaria aplicada.</p>
+
+                        <form id="formSimulacao" class="modal-sim-form">
+                            <div class="modal-sim-campo">
+                                <label for="selectProduto" class="modal-sim-label">Produto</label>
+                                <select id="selectProduto" class="form-select select-rdm"></select>
+                            </div>
+
+                            <div class="modal-sim-campo">
+                                <label for="selectMaterial" class="modal-sim-label">Material / Tecido</label>
+                                <select id="selectMaterial" class="form-select select-rdm"></select>
+                            </div>
+
+                            <div class="modal-sim-campo">
+                                <label for="selectTamanho" class="modal-sim-label">Tamanho</label>
+                                <select id="selectTamanho" class="form-select select-rdm"></select>
+                            </div>
+
+                            <button type="submit" id="btnGerarPreview" class="btn-rdm w-100 mt-2">
+                                Gerar prévia com IA
+                            </button>
+                        </form>
+
+                        <div id="previewArea" class="modal-sim-preview">
+                            <div id="previewVazio" class="modal-sim-preview-vazio">
+                                A prévia gerada vai aparecer aqui.
+                            </div>
+                            <div id="previewCarregando" class="modal-sim-preview-loading d-none">
+                                <span class="spinner-rdm" aria-hidden="true"></span>
+                                Gerando prévia com IA...
+                            </div>
+                            <div id="previewErro" class="modal-sim-preview-erro d-none">
+                                Não foi possível gerar a prévia agora. Tente novamente em instantes.
+                            </div>
+                            <div id="previewResultado" class="modal-sim-preview-resultado d-none">
+                                <img id="previewImg" src="" alt="Prévia gerada por IA do produto com a estampa">
+                                <span class="modal-sim-preview-aviso">Prévia gerada por IA — apenas ilustrativa, o
+                                    resultado real pode variar.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="rodape" id="contato">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <h2 class="fw-bold">RDM Gráfica</h2>
+                    <p>Rua Vereador Francisco Mendes Castanho, 328 - Cesário Lange, SP</p>
+                    <p>(15) 99698-0394</p>
+                    <p>rdm.confeccoes@hotmail.com</p>
+                </div>
+
+                <div class="col-md-6 text-md-end">
+                    <h4>Solicite um orçamento</h4>
+                    <a href="./contato.html" class="btn btn-rdm mt-2">Fale conosco</a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script type="module" src="../js/estampas.js"></script>
+
+</body>
+
+</html>
