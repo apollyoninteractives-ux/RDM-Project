@@ -48,7 +48,7 @@
                     <span class="badge bg-danger px-3 py-2 mb-3">Nosso catálogo</span>
                     <h1 class="hero-titulo">Estampas</h1>
                     <p class="hero-texto">Navegue pelas nossas estampas disponíveis. Clique em uma delas para
-                        escolher o produto, o material e o tamanho, e gerar uma prévia com IA de como ficaria.</p>
+                        escolher o produto, o material e o tamanho, e simular como a estampa ficaria aplicada.</p>
                 </div>
             </div>
         </div>
@@ -84,10 +84,10 @@
 
                     <div class="col-md-7 modal-estampa-col-sim">
                         <h4 class="modal-sim-titulo">Simule esta estampa em um produto</h4>
-                        <p class="modal-sim-sub">Escolha as opções abaixo e gere uma prévia com inteligência
-                            artificial de como a estampa ficaria aplicada.</p>
+                        <p class="modal-sim-sub">Escolha as opções abaixo, depois arraste a estampa sobre a foto do
+                            produto para posicioná-la.</p>
 
-                        <form id="formSimulacao" class="modal-sim-form">
+                        <div class="modal-sim-form">
                             <div class="modal-sim-campo">
                                 <label for="selectProduto" class="modal-sim-label">Produto</label>
                                 <select id="selectProduto" class="form-select select-rdm"></select>
@@ -103,27 +103,42 @@
                                 <select id="selectTamanho" class="form-select select-rdm"></select>
                             </div>
 
-                            <button type="submit" id="btnGerarPreview" class="btn-rdm w-100 mt-2">
-                                Gerar prévia com IA
-                            </button>
-                        </form>
+                            <div class="modal-sim-campo">
+                                <span class="modal-sim-label">Cor do produto</span>
+                                <div id="coresGrid" class="modal-sim-cores" role="radiogroup"
+                                    aria-label="Cor do produto"></div>
+                                <span id="corSelecionadaTexto" class="modal-sim-cor-texto"></span>
+                            </div>
+                        </div>
 
                         <div id="previewArea" class="modal-sim-preview">
-                            <div id="previewVazio" class="modal-sim-preview-vazio">
-                                A prévia gerada vai aparecer aqui.
+
+                            <div id="editorWrap" class="modal-sim-editor">
+                                <canvas id="editorCanvas" class="modal-sim-editor-canvas"></canvas>
+                                <p id="editorAviso" class="modal-sim-editor-aviso">Carregando...</p>
+                                <button type="button" id="btnGerarPreview" class="btn-rdm w-100 mt-2">
+                                    Gerar prévia
+                                </button>
                             </div>
-                            <div id="previewCarregando" class="modal-sim-preview-loading d-none">
-                                <span class="spinner-rdm" aria-hidden="true"></span>
-                                Gerando prévia com IA...
-                            </div>
+
                             <div id="previewErro" class="modal-sim-preview-erro d-none">
-                                Não foi possível gerar a prévia agora. Tente novamente em instantes.
+                                Não foi possível montar a prévia agora. Tente novamente.
                             </div>
+
                             <div id="previewResultado" class="modal-sim-preview-resultado d-none">
-                                <img id="previewImg" src="" alt="Prévia gerada por IA do produto com a estampa">
-                                <span class="modal-sim-preview-aviso">Prévia gerada por IA — apenas ilustrativa, o
-                                    resultado real pode variar.</span>
+                                <img id="previewImg" src="" alt="Prévia do produto com a estampa aplicada">
+                                <span class="modal-sim-preview-aviso">Prévia ilustrativa — o resultado real pode
+                                    variar.</span>
+                                <div class="modal-sim-preview-acoes">
+                                    <button type="button" id="btnEditarNovamente" class="btn-rdm-outline">
+                                        Editar novamente
+                                    </button>
+                                    <a id="btnBaixarPreview" class="btn-rdm" download="previa-estampa.png">
+                                        Baixar imagem
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
                     </div>
 

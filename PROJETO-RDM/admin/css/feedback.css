@@ -45,18 +45,55 @@ margin-bottom:8px;
 font-weight:700;
 color:#111;
 font-size:.92rem;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.feedback-tipo{
+font-weight:600;
+font-size:.68rem;
+text-transform:uppercase;
+letter-spacing:.03em;
+padding:2px 8px;
+border-radius:20px;
+}
+
+.feedback-tipo-feedback{
+background:rgba(217,28,35,.14);
+color:var(--red-dark, #a3151b);
+}
+
+.feedback-tipo-ajuda{
+background:rgba(47,111,217,.14);
+color:#2f6fd9;
 }
 
 .feedback-data{
 color:#555;
 font-size:.78rem;
+white-space:nowrap;
 }
 
 .feedback-mensagem{
 color:#333;
 font-size:.9rem;
 line-height:1.5;
+margin:0 0 8px;
+}
+
+.feedback-telefone{
+color:#555;
+font-size:.8rem;
 margin:0 0 12px;
+}
+
+.feedback-erro{
+color:#a3151b;
+font-size:.85rem;
+text-align:center;
+list-style:none;
+padding:10px 0;
 }
 
 .feedback-list::-webkit-scrollbar{
