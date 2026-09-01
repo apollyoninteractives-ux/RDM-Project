@@ -1,13 +1,6 @@
-// Listagem de feedbacks/ajuda no painel admin.
-//
-// Lê a coleção "AjudaEFeedback" do Firestore — a mesma em que o
-// formulário público (html/ajuda-e-feedback.html, via
-// admin/js/formulario.js) grava quando alguém envia o formulário — e
-// monta um item por envio, com botão de excluir.
-//
-// Só é possível chegar nesta página logado como admin (ver
-// admin/js/auth-guard.js, carregado no <head> de feedback.html), então a
-// listagem só aparece pra quem está autenticado.
+// Lê a coleção "AjudaEFeedback" do Firestore (a mesma em que o formulário
+// público em html/ajuda-e-feedback.html grava) e monta a listagem de
+// feedbacks/ajuda no painel admin, com botão de excluir por item.
 
 import { db } from "./firebase.js";
 import {
@@ -90,8 +83,7 @@ async function carregarFeedbacks() {
         snap.forEach(docSnap => {
             listaFeedbacks.appendChild(criarItem(docSnap.id, docSnap.data()));
         });
-        // Se a lista continuar vazia aqui, o CSS (.feedback-list:empty)
-        // já mostra "Nenhum feedback recebido ainda." sozinho.
+        // Se a lista continuar vazia, o CSS (.feedback-list:empty) já mostra o aviso.
 
     } catch (erro) {
         console.error("Erro ao carregar feedbacks:", erro);

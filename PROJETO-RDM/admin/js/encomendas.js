@@ -1,15 +1,5 @@
-// Liga a seção "Encomendas finalizadas" do painel admin ao Firebase.
-//
-// - Ao clicar em "enviar": a imagem é redimensionada/comprimida no próprio
-//   navegador e salva, junto com a descrição e a data, como um único
-//   documento na coleção "encomendas" do Firestore.
-//   (Não usa o Firebase Storage — só o Firestore, que é o mesmo serviço já
-//   usado pelo formulário de Ajuda e Feedback. Isso evita depender de o
-//   Storage estar provisionado/configurado no projeto do Firebase.)
-// - A página pública (html/encomendas.html) lê essa mesma coleção pra
-//   montar os cards do "Histórico de Encomendas".
-// - Também preenche a "Listagem de Uploads" aqui do painel, com botão
-//   de excluir.
+// Envia uploads da seção "Encomendas finalizadas" do painel admin para o
+// Firestore (coleção "encomendas") e mantém a listagem/exclusão sincronizadas.
 
 import { db } from "./firebase.js";
 import {
@@ -33,8 +23,8 @@ const uploadPreview = document.getElementById("previewEncomendas");
 
 const encomendasCollection = collection(db, "encomendas");
 
-// Documentos do Firestore têm limite de ~1MB. Redimensionamos e comprimimos
-// a imagem no navegador antes de salvar, pra caber com folga nesse limite.
+// Documentos do Firestore têm limite de ~1MB: a imagem é redimensionada e
+// comprimida no navegador antes de salvar.
 const DIMENSAO_MAXIMA = 1280;
 const TAMANHO_ALVO_BYTES = 700000;
 

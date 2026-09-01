@@ -1,13 +1,8 @@
-// Página pública "Estampas".
-//
-// Lê a coleção "estampas" do Firestore — a mesma em que o painel admin
-// (admin/js/estampas.js) salva quando alguém faz upload em "Estampas" — e
-// monta um card para cada uma. Ao clicar em um card, abre um modal onde a
-// pessoa escolhe um produto (camiseta, caneca etc.), o material/tecido e o
-// tamanho, e simula a estampa aplicada sobre uma FOTO BASE real do produto
-// (ver /img/produtos e js/produtos-base.js) — a estampa é só colada por
-// cima com <canvas>, sem nenhuma IA de geração de imagem envolvida. O
-// cliente pode arrastar e redimensionar a estampa antes de gerar a prévia.
+// Página pública "Estampas": lê a coleção "estampas" do Firestore (a mesma
+// em que admin/js/estampas.js salva) e monta um card por estampa. Ao clicar,
+// abre um modal onde a pessoa escolhe produto, material e tamanho e simula a
+// estampa sobre uma foto base do produto (ver /img/produtos e
+// produtos-base.js), podendo arrastar/redimensionar antes de gerar a prévia.
 
 import { db } from "../admin/js/firebase.js";
 import {
@@ -18,7 +13,6 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 import { caminhoImagemBase, areaPadraoEstampa } from "./produtos-base.js";
 
-/* ---------- Catálogo de produtos ---------- */
 const CATALOGO_PRODUTOS = {
     "Camiseta": {
         materiais: ["Algodão", "Poliéster (Dry-fit)", "Malha PV"],
@@ -47,8 +41,6 @@ const CATALOGO_PRODUTOS = {
     }
 };
 
-/* Mapa de nome de cor para valor CSS — usado pra pintar a bolinha de
-   seleção e também o placeholder desenhado quando falta a foto real. */
 const MAPA_COR_CSS = {
     "Branco": "#ffffff",
     "Preto": "#1a1a1a",
@@ -94,15 +86,13 @@ const ctx = editorCanvas.getContext("2d");
 let estampaAtual = null;
 let corAtual = null;
 
-// Estado do editor: imagem base carregada, imagem da estampa carregada,
-// e a caixa (em pixels do canvas) onde a estampa é desenhada.
 let imgBase = null;
 let imgEstampa = null;
 let baseCarregouComSucesso = false;
 let caixa = { x: 0, y: 0, w: 0, h: 0 };
 
 const TAMANHO_MIN_CAIXA = 24;
-const ALCA_TAMANHO = 14; // alça de redimensionar, em px do canvas
+const ALCA_TAMANHO = 14;
 
 function formatarData(valorISO) {
     if (!valorISO) return "";
@@ -207,8 +197,7 @@ function carregarImagem(url) {
     });
 }
 
-// Desenha um placeholder simples (retângulo + texto) no lugar da foto real
-// do produto, pra quando o arquivo em /img/produtos ainda não existe.
+// Placeholder simples pra quando a foto real do produto ainda não existe em /img/produtos.
 function criarPlaceholderBase(produto, cor, largura, altura) {
     const canvasAux = document.createElement("canvas");
     canvasAux.width = largura;
@@ -259,14 +248,12 @@ function desenharEditor() {
     if (imgEstampa) {
         ctx.drawImage(imgEstampa, caixa.x, caixa.y, caixa.w, caixa.h);
 
-        // Contorno da caixa (só no modo edição)
         ctx.strokeStyle = "#d91c23";
         ctx.lineWidth = 2;
         ctx.setLineDash([6, 4]);
         ctx.strokeRect(caixa.x, caixa.y, caixa.w, caixa.h);
         ctx.setLineDash([]);
 
-        // Alça de redimensionar no canto inferior direito
         ctx.fillStyle = "#d91c23";
         ctx.fillRect(
             caixa.x + caixa.w - ALCA_TAMANHO / 2,
@@ -302,7 +289,7 @@ function dentroDaCaixa(pos) {
         pos.y >= caixa.y && pos.y <= caixa.y + caixa.h;
 }
 
-let modoInteracao = null; // "mover" | "redimensionar" | null
+let modoInteracao = null;
 let offsetArraste = { x: 0, y: 0 };
 
 function iniciarInteracao(evento) {
@@ -355,8 +342,6 @@ async function carregarBaseEEstampa() {
     const produto = selectProduto.value;
     const cor = corAtual;
 
-    // Tamanho fixo do canvas de edição (a exportação final usa essa
-    // mesma resolução — suba esses valores se quiser mais qualidade).
     editorCanvas.width = 640;
     editorCanvas.height = 640;
 
@@ -385,7 +370,7 @@ async function carregarBaseEEstampa() {
         : "Foto real do produto ainda não cadastrada — adicione o arquivo em /img/produtos/. Usando um placeholder por enquanto.";
 }
 
-/* ---------- Gerar prévia final (composição, sem IA) ---------- */
+/* ---------- Gerar prévia final ---------- */
 
 function gerarPreview() {
     if (!imgBase) {
@@ -393,7 +378,6 @@ function gerarPreview() {
         return;
     }
 
-    // Redesenha numa cópia limpa (sem contorno/alça) pra exportar.
     const canvasFinal = document.createElement("canvas");
     canvasFinal.width = editorCanvas.width;
     canvasFinal.height = editorCanvas.height;

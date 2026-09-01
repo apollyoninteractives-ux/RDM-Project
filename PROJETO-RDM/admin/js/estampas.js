@@ -1,13 +1,6 @@
-// Liga a seção "Estampas" do painel admin ao Firebase.
-//
-// Segue exatamente o mesmo padrão de admin/js/encomendas.js:
-// - A imagem é redimensionada/comprimida no navegador e salva, junto com a
-//   descrição e a data, como um único documento na coleção "estampas" do
-//   Firestore (sem depender do Firebase Storage).
-// - A página pública (html/estampas.html) lê essa mesma coleção pra montar
-//   a galeria de estampas e o modal de simulação com IA.
-// - Também preenche a "Listagem de Estampas" aqui do painel, com botão de
-//   excluir.
+// Envia uploads da seção "Estampas" do painel admin para o Firestore
+// (coleção "estampas") e mantém a listagem/exclusão sincronizadas. Segue o
+// mesmo padrão de admin/js/encomendas.js.
 
 import { db } from "./firebase.js";
 import {
@@ -31,8 +24,8 @@ const uploadPreview = document.getElementById("previewEstampas");
 
 const estampasCollection = collection(db, "estampas");
 
-// Documentos do Firestore têm limite de ~1MB. Redimensionamos e comprimimos
-// a imagem no navegador antes de salvar, pra caber com folga nesse limite.
+// Documentos do Firestore têm limite de ~1MB: a imagem é redimensionada e
+// comprimida no navegador antes de salvar.
 const DIMENSAO_MAXIMA = 1280;
 const TAMANHO_ALVO_BYTES = 700000;
 

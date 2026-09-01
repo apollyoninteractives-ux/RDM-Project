@@ -1,117 +1,109 @@
-/* ============================================
-  RDM Gráfica — Histórico de Encomendas (público)
-  (usa global.css como base: --red, .card-encomenda,
-  hero, rodapé etc. já vêm de lá)
-  ============================================ */
-
 #encomendasEstado{
-font-style:italic;
+  font-style:italic;
 }
 
-/* ---------- Cards ---------- */
 .card-encomenda{
-padding:18px;
-cursor:pointer;
-display:flex;
-flex-direction:column;
-background:linear-gradient(160deg,#f2f2f2,#e2e2e2);
-border:1px solid #d5d5d5;
+  padding:18px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+  border:1px solid var(--border);
 }
 
 .card-encomenda-img-wrap{
-width:100%;
-aspect-ratio:4/5;
-border-radius:16px;
-overflow:hidden;
-background:#cfcfcf;
-margin-bottom:16px;
+  width:100%;
+  aspect-ratio:4/5;
+  border-radius:14px;
+  overflow:hidden;
+  background:#e4e4e7;
+  margin-bottom:16px;
 }
 
 .card-encomenda-img-wrap img{
-width:100%;
-height:100%;
-object-fit:cover;
-object-position:center;
-transition:.4s;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .4s var(--ease);
 }
 
 .card-encomenda:hover .card-encomenda-img-wrap img{
-transform:scale(1.06);
+  transform:scale(1.06);
 }
 
 .card-encomenda-descricao{
-font-weight:600;
-color:#333;
-margin-bottom:8px;
-display:-webkit-box;
--webkit-line-clamp:2;
--webkit-box-orient:vertical;
-overflow:hidden;
+  font-weight:600;
+  color:#333;
+  margin-bottom:8px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
 }
 
 .card-encomenda-data{
-font-size:.82rem;
-color:var(--red);
-font-weight:700;
-text-transform:uppercase;
-letter-spacing:.03em;
+  font-size:.82rem;
+  color:var(--red);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.03em;
 }
 
 .card-encomenda-click:focus-visible{
-outline:3px solid var(--red);
-outline-offset:4px;
+  outline:3px solid var(--red);
+  outline-offset:4px;
 }
 
-/* ---------- Modal ---------- */
 .modal-encomenda{
-border:none;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 25px 60px rgba(0,0,0,.35);
-background:#ececec;
+  border:none;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 25px 60px rgba(0,0,0,.3);
+  background:#fff;
 }
 
 .modal-encomenda-close{
-position:absolute;
-top:14px;
-right:14px;
-z-index:2;
-background:#e2e2e2;
-border-radius:50%;
-padding:8px;
-opacity:.9;
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:2;
+  background:#fff;
+  border-radius:50%;
+  padding:8px;
+  opacity:.9;
 }
 
 .modal-encomenda-img{
-width:100%;
-max-height:420px;
-object-fit:cover;
-object-position:center;
-background:#cfcfcf;
+  width:100%;
+  max-height:420px;
+  object-fit:cover;
+  object-position:center;
+  background:#e4e4e7;
 }
 
 .modal-encomenda-body{
-padding:28px 30px 32px;
+  padding:28px 30px 32px;
 }
 
 .modal-encomenda-data{
-display:inline-block;
-font-size:.8rem;
-font-weight:700;
-color:var(--red);
-text-transform:uppercase;
-letter-spacing:.03em;
-margin-bottom:6px;
+  display:inline-block;
+  font-size:.8rem;
+  font-weight:700;
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  margin-bottom:6px;
 }
 
 .modal-encomenda-titulo{
-font-weight:800;
-margin-bottom:14px;
+  font-weight:800;
+  margin-bottom:14px;
 }
 
 .modal-encomenda-descricao{
-color:#4a4a4a;
-line-height:1.6;
-margin-bottom:0;
-white-space:pre-line;
+  color:#4a4a4a;
+  line-height:1.6;
+  margin-bottom:0;
+  white-space:pre-line;
 }

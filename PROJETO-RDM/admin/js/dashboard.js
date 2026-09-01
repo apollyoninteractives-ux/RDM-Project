@@ -1,4 +1,3 @@
-// Atualiza o textinho de confirmação abaixo de cada quadradinho de upload.
 document.querySelectorAll('.upload-input').forEach(input => {
     const status = input.closest('.admin-col-upload').querySelector('.upload-status');
     input.addEventListener('change', () => {
@@ -15,10 +14,3 @@ document.querySelectorAll('.upload-input').forEach(input => {
         }
     });
 });
-
-// A listagem de uploads é montada dinamicamente aqui.
-// Cada item deve ser adicionado em #listaUploads, por exemplo:
-//
-// const li = document.createElement('li');
-// li.innerHTML = `<span>${nomeDoArquivo}</span><button class="btn-admin btn-admin-sm">excluir</button>`;
-// document.getElementById('listaUploads').appendChild(li);

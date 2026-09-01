@@ -1,149 +1,116 @@
-*{
-font-family:'Inter',sans-serif;
-scroll-behavior:smooth;
-box-sizing:border-box;
-}
-body{
-background:linear-gradient(180deg,#fff,#f5f5f5);
-overflow-x:hidden;
-color:#222;
+.hero{
+  min-height:75vh;
+  display:flex;
+  align-items:center;
+  padding:calc(var(--nav-height) + 62px) 0 70px;
+  background:linear-gradient(160deg,#fff 0%,#f2f2f3 100%);
 }
 
-/* HERO */
-.hero{
-min-height:75vh;
-display:flex;
-align-items:center;
-padding:calc(var(--nav-height) + 62px) 0 70px;
-background:linear-gradient(135deg,#fff,#f1f1f1);
-}
 .hero-titulo{
-font-size:clamp(2.5rem,5vw,4.5rem);
-font-weight:800;
-line-height:1.1;
-color:var(--dark);
+  font-size:clamp(2.5rem,5vw,4.5rem);
+  font-weight:800;
+  letter-spacing:-.02em;
+  line-height:1.08;
+  color:var(--dark);
 }
+
 .hero-texto{
-font-size:1.15rem;
-color:#666;
-max-width:700px;
-margin:auto;
-line-height:1.7;
+  font-size:1.15rem;
+  color:var(--ink-soft);
+  max-width:700px;
+  margin:auto;
+  line-height:1.7;
 }
 
-/* BADGE */
 .badge{
-background:var(--red)!important;
-border-radius:30px;
-font-weight:600;
+  background:var(--red)!important;
+  border-radius:var(--radius-pill,30px);
+  font-weight:600;
 }
 
-/* FORM */
 .card-rdm{
-background:#fff;
-padding:45px;
-border-radius:25px;
-box-shadow:var(--shadow);
-border-top:6px solid var(--red);
+  background:#fff;
+  padding:45px;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  border-top:5px solid var(--red);
 }
+
 .card-rdm h3{
-font-weight:800;
-color:var(--dark);
+  font-weight:800;
+  color:var(--dark);
 }
+
 .card-rdm label{
-font-weight:600;
-margin-bottom:8px;
-color:#333;
+  font-weight:600;
+  margin-bottom:8px;
+  color:#333;
 }
+
 .form-control{
-padding:14px 16px;
-border-radius:14px;
-border:2px solid #ddd;
-transition:.3s;
+  padding:14px 16px;
+  border-radius:12px;
+  border:2px solid #e2e2e5;
+  transition:border-color .2s ease, box-shadow .2s ease;
 }
+
 .form-control:focus{
-border-color:var(--red);
-box-shadow:0 0 0 4px rgba(217,28,35,.15);
+  border-color:var(--red);
+  box-shadow:0 0 0 4px rgba(217,28,35,.14);
 }
+
 .form-check-input{
-accent-color:var(--red);
+  accent-color:var(--red);
 }
+
 textarea{
-resize:none;
+  resize:none;
 }
 
-/* BOTÃO */
 .btn-rdm{
-background:linear-gradient(135deg,var(--red),var(--red-dark));
-color:#fff;
-border:none;
-padding:14px 30px;
-border-radius:14px;
-font-weight:700;
-transition:.35s;
+  background:var(--red);
+  color:#fff;
+  border:none;
+  padding:14px 30px;
+  border-radius:12px;
+  font-weight:700;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
 }
+
 .btn-rdm:hover{
-background:var(--red);
-color:#fff;
-transform:translateY(-4px);
-box-shadow:0 15px 30px rgba(217,28,35,.35);
+  background:var(--red-dark);
+  color:#fff;
+  transform:translateY(-3px);
+  box-shadow:0 16px 30px rgba(217,28,35,.3);
 }
 
-/* FOOTER */
 .rodape{
-position:relative;
-background:#111;
-color:#fff;
-padding:120px 0 70px;
-overflow:hidden;
+  position:relative;
+  background:var(--dark);
+  color:#fff;
+  padding:120px 0 70px;
+  overflow:hidden;
 }
+
 .footer-wave{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:90px;
-}
-.rodape h2{
-font-weight:800;
-}
-.rodape p{
-color:#bbb;
-}
-.rodape h4{
-font-weight:700;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:90px;
 }
 
-/* ANIMAÇÃO */
-.reveal{
-opacity:0;
-transform:translateY(35px);
-transition:.8s;
-}
-/* SCROLLBAR */
-::-webkit-scrollbar{
-width:10px;
-}
-::-webkit-scrollbar-track{
-background:#eee;
-}
-::-webkit-scrollbar-thumb{
-background:var(--red);
-border-radius:20px;
-}
-::-webkit-scrollbar-thumb:hover{
-background:var(--red-dark);
-}
+.rodape h2{ font-weight:800; }
+.rodape p{ color:#bbb; }
+.rodape h4{ font-weight:700; }
 
-/* RESPONSIVO */
+::-webkit-scrollbar{ width:10px; }
+::-webkit-scrollbar-track{ background:#eee; }
+::-webkit-scrollbar-thumb{ background:var(--red); border-radius:20px; }
+::-webkit-scrollbar-thumb:hover{ background:var(--red-dark); }
+
 @media(max-width:768px){
-.hero{
-padding-top:calc(var(--nav-height) + 54px);
-}
-.hero-titulo{
-font-size:2.5rem;
-}
-.card-rdm{
-padding:30px 20px;
-}
+  .hero{ padding-top:calc(var(--nav-height) + 54px); }
+  .hero-titulo{ font-size:2.5rem; }
+  .card-rdm{ padding:30px 20px; }
 }

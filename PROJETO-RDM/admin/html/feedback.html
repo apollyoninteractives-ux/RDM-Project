@@ -12,11 +12,6 @@
 <link href="../css/dashboard.css" rel="stylesheet">
 <link href="../css/feedback.css" rel="stylesheet">
 <link href="../css/auth-guard.css" rel="stylesheet">
-<!--
-Proteção real desta página: enquanto o auth-guard.js não confirmar
-que existe um admin logado no Firebase, o CSS acima mantém a página
-inteira invisível (evita "piscar" conteúdo admin antes do redirect).
--->
 <script type="module" src="../js/auth-guard.js"></script>
 </head>
 <body>
@@ -24,9 +19,9 @@ inteira invisível (evita "piscar" conteúdo admin antes do redirect).
 <nav class="navbar navbar-expand-lg navbar-dark navbar-rdm fixed-top">
 <svg class="navbar-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150" preserveAspectRatio="none"
     aria-hidden="true">
-    <path d="M0,0 L1440,0 L1440,100 C1260,122 1080,89 900,109 C720,127 540,93 360,110 C240,121 120,101 0,111 Z" fill="#d91c23" />
-    <path d="M0,0 L1440,0 L1440,88 C1260,110 1080,77 900,97 C720,115 540,81 360,98 C240,109 120,89 0,99 Z" fill="#ffffff" />
-    <path d="M0,0 L1440,0 L1440,81 C1260,103 1080,70 900,90 C720,108 540,74 360,91 C240,102 120,82 0,92 Z" fill="#111" />
+    <path d="M0,0 L1440,0 L1440,92 C1260,136 1080,70 900,110 C720,146 540,78 360,112 C240,134 120,94 0,114 Z" fill="#d91c23" />
+    <path d="M0,0 L1440,0 L1440,80 C1260,124 1080,58 900,98 C720,134 540,66 360,100 C240,122 120,82 0,102 Z" fill="#ffffff" />
+    <path d="M0,0 L1440,0 L1440,73 C1260,117 1080,51 900,91 C720,127 540,59 360,93 C240,115 120,75 0,95 Z" fill="#111" />
 </svg>
 <div class="container">
     <a class="navbar-brand" href="dashboard.html">RDM Admin</a>
@@ -49,9 +44,7 @@ inteira invisível (evita "piscar" conteúdo admin antes do redirect).
 <section class="reveal">
 <h2 class="admin-title">Feedback dos usuários</h2>
 <div class="admin-card admin-card-list">
-<ul id="listaFeedbacks" class="feedback-list">
-<!-- Preenchido via JavaScript, um item por feedback recebido -->
-</ul>
+<ul id="listaFeedbacks" class="feedback-list"></ul>
 </div>
 </section>
 

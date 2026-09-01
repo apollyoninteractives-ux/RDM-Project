@@ -1,26 +1,17 @@
-// Configuração das imagens BASE dos produtos (fotos reais, sem IA).
-//
-// Cada produto+cor aponta pra um arquivo em /img/produtos/<produto>/<cor>.png
-// (ou .jpg). Enquanto a foto real não existe, o site desenha um retângulo
-// de placeholder no lugar, só pra não travar o simulador — basta colocar o
-// arquivo com o nome certo na pasta que ele passa a ser usado.
-//
-// "area" é a região onde a estampa é desenhada por padrão, em PORCENTAGEM
-// do tamanho da imagem base (0 a 1) — assim funciona não importa a
-// resolução da foto. O cliente pode arrastar/redimensionar a partir daí.
-// Ajuste esses números pra casar com o peito da camiseta, o corpo da
-// caneca etc. na sua foto real.
+// Configuração das imagens base dos produtos (fotos reais, sem IA).
+// Cada produto+cor aponta para /img/produtos/<produto>/<cor>.png (ou .jpg);
+// enquanto a foto real não existe, o simulador desenha um placeholder no
+// lugar. "area" define a região padrão da estampa em porcentagem (0 a 1)
+// do tamanho da imagem base, e o cliente pode arrastar/redimensionar a partir daí.
 
 function slug(texto) {
     return texto
         .toLowerCase()
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove acentos
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/(^-|-$)/g, "");
 }
 
-// Área padrão genérica (estampa central, tipo "peito"). Serve de fallback
-// pra qualquer produto que não tenha uma área específica definida abaixo.
 const AREA_PADRAO = { xPct: 0.32, yPct: 0.22, wPct: 0.36, hPct: 0.36 };
 
 const AREA_POR_PRODUTO = {

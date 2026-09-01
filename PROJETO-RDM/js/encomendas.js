@@ -1,9 +1,6 @@
-// Página pública "Histórico de Encomendas".
-//
-// Lê a coleção "encomendas" do Firestore — a mesma em que o painel admin
-// (admin/js/encomendas.js) salva quando alguém faz upload em "Encomendas
-// finalizadas" — e monta um card para cada upload. Ao clicar em um card,
-// abre um modal com a imagem em destaque, a descrição e a data.
+// Página pública "Histórico de Encomendas": lê a coleção "encomendas" do
+// Firestore (a mesma em que admin/js/encomendas.js salva) e monta um card
+// por upload. Ao clicar em um card, abre um modal com imagem, descrição e data.
 
 import { db } from "../admin/js/firebase.js";
 import {
