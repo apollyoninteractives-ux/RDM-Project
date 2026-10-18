@@ -1,0 +1,211 @@
+// Envia uploads da seção "Estampas" do painel admin para o Firestore
+// (coleção "estampas") e mantém a listagem/exclusão sincronizadas. Segue o
+// mesmo padrão de admin/js/encomendas.js.
+
+import { db } from "./firebase.js";
+import {
+    collection,
+    addDoc,
+    deleteDoc,
+    doc,
+    getDocs,
+    query,
+    orderBy,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const fileInput = document.getElementById("fileEstampa");
+const descricaoInput = document.getElementById("descricaoEstampa");
+const dataInput = document.getElementById("dataUploadEstampa");
+const btnEnviar = document.getElementById("btnEnviarEstampa");
+const statusSpan = fileInput?.closest(".admin-col-upload")?.querySelector(".upload-status");
+const listaEstampas = document.getElementById("listaEstampas");
+const uploadPreview = document.getElementById("previewEstampas");
+
+const estampasCollection = collection(db, "estampas");
+
+// Documentos do Firestore têm limite de ~1MB: a imagem é redimensionada e
+// comprimida no navegador antes de salvar.
+const DIMENSAO_MAXIMA = 1280;
+const TAMANHO_ALVO_BYTES = 700000;
+
+function formatarData(valorISO) {
+    if (!valorISO) return "Sem data";
+    const [ano, mes, dia] = valorISO.split("-");
+    return `${dia}/${mes}/${ano}`;
+}
+
+function converterImagemParaDataURL(arquivo) {
+    return new Promise((resolve, reject) => {
+        const leitor = new FileReader();
+
+        leitor.onerror = () => reject(new Error("Não foi possível ler o arquivo selecionado."));
+
+        leitor.onload = () => {
+            const img = new Image();
+
+            img.onerror = () => reject(new Error("O arquivo selecionado não é uma imagem válida."));
+
+            img.onload = () => {
+                let { width, height } = img;
+
+                if (width > DIMENSAO_MAXIMA || height > DIMENSAO_MAXIMA) {
+                    if (width >= height) {
+                        height = Math.round(height * (DIMENSAO_MAXIMA / width));
+                        width = DIMENSAO_MAXIMA;
+                    } else {
+                        width = Math.round(width * (DIMENSAO_MAXIMA / height));
+                        height = DIMENSAO_MAXIMA;
+                    }
+                }
+
+                // PNG/WebP/GIF podem ter transparência: JPEG a transformaria em fundo preto.
+                // Nesses casos salvamos em WebP (mantém o canal alpha e é leve).
+                const temTransparencia = /^image\/(png|webp|gif)$/.test(arquivo.type);
+                const formato = temTransparencia ? "image/webp" : "image/jpeg";
+
+                const gerar = (w, h, q) => {
+                    const canvas = document.createElement("canvas");
+                    canvas.width = w;
+                    canvas.height = h;
+                    canvas.getContext("2d").drawImage(img, 0, 0, w, h);
+                    return canvas.toDataURL(formato, q);
+                };
+
+                let qualidade = 0.82;
+                let dataUrl = gerar(width, height, qualidade);
+
+                while (dataUrl.length > TAMANHO_ALVO_BYTES && qualidade > 0.3) {
+                    qualidade -= 0.12;
+                    dataUrl = gerar(width, height, qualidade);
+                }
+
+                // Navegadores sem suporte a WebP devolvem PNG (ignora a qualidade):
+                // nesse caso reduzimos as dimensões até caber.
+                while (dataUrl.length > TAMANHO_ALVO_BYTES && width > 200) {
+                    width = Math.round(width * 0.85);
+                    height = Math.round(height * 0.85);
+                    dataUrl = gerar(width, height, qualidade);
+                }
+
+                if (dataUrl.length > 900000) {
+                    reject(new Error("A imagem continua muito grande mesmo após a compressão. Tente uma foto menor."));
+                    return;
+                }
+
+                resolve(dataUrl);
+            };
+
+            img.src = leitor.result;
+        };
+
+        leitor.readAsDataURL(arquivo);
+    });
+}
+
+async function enviarEstampa() {
+    const arquivo = fileInput?.files?.[0];
+    const descricao = descricaoInput?.value.trim();
+    const data = dataInput?.value;
+
+    if (!arquivo) {
+        alert("Selecione uma imagem da estampa.");
+        return;
+    }
+    if (!descricao) {
+        alert("Preencha a descrição da estampa.");
+        return;
+    }
+    if (!data) {
+        alert("Selecione a data do upload.");
+        return;
+    }
+
+    const textoOriginal = btnEnviar.textContent;
+    btnEnviar.disabled = true;
+    btnEnviar.textContent = "enviando...";
+
+    try {
+        const imagemUrl = await converterImagemParaDataURL(arquivo);
+
+        await addDoc(estampasCollection, {
+            imagemUrl,
+            descricao,
+            data,
+            criadoEm: serverTimestamp()
+        });
+
+        alert("Estampa enviada com sucesso!");
+
+        fileInput.value = "";
+        descricaoInput.value = "";
+        dataInput.value = "";
+        if (statusSpan) {
+            statusSpan.textContent = "Nenhum arquivo selecionado";
+            statusSpan.classList.remove("upload-status-ok");
+        }
+
+        carregarListagem();
+
+    } catch (erro) {
+        console.error("Erro ao enviar estampa:", erro);
+        alert(`Erro ao enviar a estampa: ${erro.message || "tente novamente."}`);
+    } finally {
+        btnEnviar.disabled = false;
+        btnEnviar.textContent = textoOriginal;
+    }
+}
+
+async function excluirEstampa(id) {
+    if (!confirm("Excluir esta estampa da galeria pública?")) return;
+
+    try {
+        await deleteDoc(doc(db, "estampas", id));
+        carregarListagem();
+    } catch (erro) {
+        console.error("Erro ao excluir estampa:", erro);
+        alert(`Erro ao excluir a estampa: ${erro.message || "tente novamente."}`);
+    }
+}
+
+async function carregarListagem() {
+    if (!listaEstampas) return;
+
+    listaEstampas.innerHTML = "";
+
+    try {
+        const snap = await getDocs(query(estampasCollection, orderBy("criadoEm", "desc")));
+
+        if (snap.empty) {
+            return;
+        }
+
+        snap.forEach(docSnap => {
+            const estampa = docSnap.data();
+
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <span>${estampa.descricao} — ${formatarData(estampa.data)}</span>
+                <button type="button" class="btn-admin btn-admin-sm">excluir</button>
+            `;
+
+            li.addEventListener("mouseenter", () => {
+                if (uploadPreview) {
+                    uploadPreview.innerHTML = `<img src="${estampa.imagemUrl}" alt="${estampa.descricao}" class="upload-preview-img">`;
+                }
+            });
+
+            li.querySelector("button").addEventListener("click", () => {
+                excluirEstampa(docSnap.id);
+            });
+
+            listaEstampas.appendChild(li);
+        });
+    } catch (erro) {
+        console.error("Erro ao carregar listagem de estampas:", erro);
+    }
+}
+
+btnEnviar?.addEventListener("click", enviarEstampa);
+
+carregarListagem();

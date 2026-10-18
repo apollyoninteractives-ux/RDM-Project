@@ -1,0 +1,365 @@
+#estampasEstado{
+  font-style:italic;
+}
+
+.card-estampa{
+  padding:18px;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  background:#fff;
+  border:1px solid var(--border);
+}
+
+.card-estampa-img-wrap{
+  width:100%;
+  aspect-ratio:4/5;
+  border-radius:14px;
+  overflow:hidden;
+  background:#e4e4e7;
+  margin-bottom:16px;
+}
+
+.card-estampa-img-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .4s var(--ease);
+}
+
+.card-estampa:hover .card-estampa-img-wrap img{
+  transform:scale(1.06);
+}
+
+.card-estampa-descricao{
+  font-weight:600;
+  color:#333;
+  margin-bottom:8px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.card-estampa-data{
+  font-size:.82rem;
+  color:var(--red);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.03em;
+}
+
+.card-estampa-cta{
+  margin-top:10px;
+  font-size:.8rem;
+  font-weight:700;
+  color:#666;
+}
+
+.card-estampa-click:focus-visible{
+  outline:3px solid var(--red);
+  outline-offset:4px;
+}
+
+.modal-estampa{
+  border:none;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 25px 60px rgba(0,0,0,.3);
+  background:#fff;
+}
+
+.modal-estampa-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  z-index:3;
+  background:#fff;
+  border-radius:50%;
+  padding:8px;
+  opacity:.92;
+}
+
+.modal-estampa-col-img{
+  position:relative;
+  background:#f2f2f3;
+  display:flex;
+  flex-direction:column;
+}
+
+.modal-estampa-img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  object-position:center;
+  background:#e4e4e7;
+}
+
+.modal-estampa-imgbody{
+  padding:22px 24px;
+}
+
+.modal-estampa-data{
+  display:inline-block;
+  font-size:.78rem;
+  font-weight:700;
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  margin-bottom:6px;
+}
+
+.modal-estampa-titulo{
+  font-weight:800;
+  font-size:1.2rem;
+  margin-bottom:10px;
+}
+
+.modal-estampa-descricao{
+  color:#4a4a4a;
+  line-height:1.55;
+  margin-bottom:0;
+  white-space:pre-line;
+  font-size:.92rem;
+}
+
+.modal-estampa-col-sim{
+  padding:26px 28px 28px;
+  max-height:82vh;
+  overflow-y:auto;
+}
+
+.modal-sim-titulo{
+  font-weight:800;
+  color:var(--dark);
+  margin-bottom:6px;
+}
+
+.modal-sim-sub{
+  color:#666;
+  font-size:.88rem;
+  line-height:1.5;
+  margin-bottom:18px;
+}
+
+.modal-sim-form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.modal-sim-campo{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.modal-sim-label{
+  font-weight:600;
+  font-size:.85rem;
+  color:#333;
+}
+
+.select-rdm{
+  padding:12px 14px;
+  border-radius:12px;
+  border:2px solid #e2e2e5;
+  transition:border-color .2s ease, box-shadow .2s ease;
+  font-weight:500;
+}
+
+.select-rdm:focus{
+  border-color:var(--red);
+  box-shadow:0 0 0 4px rgba(217,28,35,.14);
+  outline:none;
+}
+
+.modal-sim-cores{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:2px;
+}
+
+.swatch-cor{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:2px solid #ddd;
+  cursor:pointer;
+  padding:0;
+  position:relative;
+  transition:transform .2s ease;
+  box-shadow:0 2px 4px rgba(0,0,0,.08);
+}
+
+.swatch-cor:hover{
+  transform:scale(1.08);
+}
+
+.swatch-cor:focus-visible{
+  outline:3px solid var(--red);
+  outline-offset:2px;
+}
+
+.swatch-cor.ativa{
+  border-color:var(--red);
+  box-shadow:0 0 0 3px rgba(217,28,35,.2);
+}
+
+.swatch-cor.ativa::after{
+  content:"✓";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-weight:800;
+  font-size:.9rem;
+  text-shadow:0 1px 2px rgba(0,0,0,.5);
+}
+
+.swatch-cor[data-clara="true"].ativa::after{
+  color:#333;
+  text-shadow:none;
+}
+
+.modal-sim-cor-texto{
+  font-size:.8rem;
+  color:#666;
+  font-weight:600;
+}
+
+#btnGerarPreview:disabled{
+  opacity:.65;
+  cursor:not-allowed;
+  transform:none !important;
+  box-shadow:none !important;
+}
+
+.modal-sim-preview{
+  margin-top:20px;
+  border-radius:16px;
+  background:#f7f7f8;
+  border:1px dashed #d5d5d8;
+  min-height:170px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  text-align:center;
+}
+
+.modal-sim-editor{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.modal-sim-editor-canvas{
+  width:100%;
+  max-width:340px;
+  aspect-ratio:1/1;
+  border-radius:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.16);
+  cursor:grab;
+  touch-action:none;
+  background:#eaeaec;
+}
+
+.modal-sim-editor-canvas:active{
+  cursor:grabbing;
+}
+
+.modal-sim-editor-aviso{
+  font-size:.78rem;
+  color:#777;
+  margin:0;
+}
+
+.modal-sim-preview-erro{
+  color:var(--red-dark);
+  font-weight:600;
+  font-size:.88rem;
+}
+
+.modal-sim-preview-resultado{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+}
+
+.modal-sim-preview-resultado img{
+  width:100%;
+  max-width:340px;
+  border-radius:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.16);
+}
+
+.modal-sim-preview-aviso{
+  font-size:.76rem;
+  color:#888;
+  font-style:italic;
+}
+
+.modal-sim-preview-acoes{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  width:100%;
+  max-width:420px;
+}
+
+.modal-sim-preview-acoes .btn-rdm,
+.modal-sim-preview-acoes .btn-rdm-outline{
+  flex:1 1 120px;
+  text-align:center;
+}
+
+.btn-rdm-outline{
+  display:inline-block;
+  padding:.5rem 1rem;
+  border-radius:10px;
+  border:1px solid var(--red);
+  color:var(--red);
+  background:transparent;
+  font-weight:600;
+  font-size:.88rem;
+  cursor:pointer;
+  transition:background .2s ease, color .2s ease;
+}
+
+.btn-rdm-outline:hover{
+  background:var(--red);
+  color:#fff;
+}
+
+@media (min-width:768px){
+  .modal-estampa-col-img{ border-right:1px solid #ececef; }
+  .modal-estampa-img{ height:100%; min-height:320px; }
+}
+
+@media (max-width:767px){
+  .modal-estampa-col-sim{ max-height:none; }
+}
+
+/* Preço estimado no simulador */
+.modal-sim-preco{
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  margin:4px 0 18px;
+  padding:14px 16px;
+  border-radius:14px;
+  background:#f4f4f6;
+  border-left:4px solid #d91c23;
+}
+.modal-sim-preco-rotulo{ font-size:.8rem; color:#666; font-weight:600; }
+.modal-sim-preco-valor{ font-size:1.6rem; color:#111114; line-height:1.2; }
+.modal-sim-preco-detalhe{ font-size:.8rem; color:#777; }

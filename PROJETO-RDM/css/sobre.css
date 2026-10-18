@@ -1,0 +1,50 @@
+.sobre-bg{
+  min-height:100vh;
+  padding:calc(var(--nav-height) + 62px) 0 80px;
+  background:linear-gradient(160deg,#fff 0%,#eeeeee 100%);
+}
+
+.sobre-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:35px;
+  box-shadow:var(--shadow-sm);
+  margin-bottom:32px;
+}
+
+.sobre-card p{
+  color:#333;
+  line-height:1.7;
+}
+
+.sobre-placeholder{
+  background:#e8e8ea;
+  color:#777;
+  border-radius:14px;
+  min-height:140px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.9rem;
+}
+
+.sobre-placeholder-wide{
+  width:100%;
+  min-height:220px;
+  margin-top:20px;
+}
+
+.sobre-link{
+  display:inline-block;
+  margin-top:15px;
+  color:var(--red);
+  font-weight:700;
+  text-decoration:none;
+  transition:transform .25s var(--ease);
+}
+
+.sobre-link:hover{
+  transform:translateX(4px);
+  color:var(--red-dark);
+}
