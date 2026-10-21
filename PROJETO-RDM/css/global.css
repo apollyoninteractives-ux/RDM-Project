@@ -45,7 +45,6 @@ html{
   outline-offset:3px;
 }
 
-/* ---------- Navbar ---------- */
 .navbar-rdm{
   position:fixed;
   top:0;
@@ -175,7 +174,6 @@ html{
   padding-top:var(--nav-height);
 }
 
-/* ---------- Hero ---------- */
 .carousel-item img{
   height:450px;
   object-fit:cover;
@@ -220,7 +218,6 @@ html{
   color:var(--ink-soft);
 }
 
-/* ---------- Botões ---------- */
 .btn-rdm{
   background:var(--red);
   color:#fff;
@@ -260,7 +257,6 @@ html{
   box-shadow:0 16px 30px rgba(0,0,0,.35);
 }
 
-/* ---------- Seções gerais ---------- */
 section{
   padding:100px 0;
 }
@@ -280,7 +276,6 @@ section{
   background:var(--gray);
 }
 
-/* ---------- Cards ---------- */
 .card-encomenda,
 .service-card{
   background:#fff;
@@ -298,7 +293,6 @@ section{
   box-shadow:var(--shadow);
 }
 
-/* ---------- Estatísticas ---------- */
 .stats{
   background:var(--dark);
   color:#fff;
@@ -310,7 +304,6 @@ section{
   color:var(--red);
 }
 
-/* ---------- Rodapé ---------- */
 .rodape{
   position:relative;
   padding-top:120px;
@@ -335,7 +328,6 @@ section{
   z-index:1;
 }
 
-/* ---------- Animação de scroll ---------- */
 .reveal{
   opacity:0;
   transform:translateY(24px);
@@ -347,7 +339,6 @@ section{
   transform:none;
 }
 
-/* ---------- Utilitários ---------- */
 .mt-16{ margin-top:16px; }
 .mt-20{ margin-top:20px; }
 .mt-32{ margin-top:32px; }

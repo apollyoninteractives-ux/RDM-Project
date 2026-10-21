@@ -349,7 +349,6 @@
   .modal-estampa-col-sim{ max-height:none; }
 }
 
-/* Preço estimado no simulador */
 .modal-sim-preco{
   display:flex;
   flex-direction:column;

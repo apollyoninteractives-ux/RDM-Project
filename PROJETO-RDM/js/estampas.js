@@ -95,7 +95,6 @@ function formatarData(valorISO) {
     return `${dia}/${mes}/${ano}`;
 }
 
-/* ---------- Selects do simulador ---------- */
 
 function preencherSelect(select, opcoes) {
     select.innerHTML = opcoes.map(opcao => `<option value="${opcao}">${opcao}</option>`).join("");
@@ -171,7 +170,6 @@ selectProduto.addEventListener("change", () => {
     carregarBaseEEstampa();
 });
 
-/* ---------- Estados da área de prévia ---------- */
 
 function mostrarEditor() {
     editorWrap.classList.remove("d-none");
@@ -195,7 +193,6 @@ function mostrarPreviewResultado(url) {
     previewResultado.classList.remove("d-none");
 }
 
-/* ---------- Carregamento de imagens ---------- */
 
 function carregarImagem(url) {
     return new Promise((resolve, reject) => {
@@ -207,7 +204,6 @@ function carregarImagem(url) {
     });
 }
 
-// Placeholder simples pra quando a foto real do produto ainda não existe em /img/produtos.
 function criarPlaceholderBase(produto, cor, largura, altura) {
     const canvasAux = document.createElement("canvas");
     canvasAux.width = largura;
@@ -237,7 +233,6 @@ function criarPlaceholderBase(produto, cor, largura, altura) {
     return new Promise(resolve => { img.onload = () => resolve(img); });
 }
 
-/* ---------- Editor: desenho, arrastar e redimensionar ---------- */
 
 function definirCaixaPadrao(produto) {
     const area = areaPadraoEstampa(produto);
@@ -344,7 +339,6 @@ editorCanvas.addEventListener("touchstart", iniciarInteracao, { passive: false }
 editorCanvas.addEventListener("touchmove", moverInteracao, { passive: false });
 window.addEventListener("touchend", finalizarInteracao);
 
-/* ---------- Carregar base + estampa no editor ---------- */
 
 async function carregarBaseEEstampa() {
     if (!estampaAtual) return;
@@ -380,7 +374,6 @@ async function carregarBaseEEstampa() {
         : "Foto real do produto ainda não cadastrada — adicione o arquivo em /img/produtos/. Usando um placeholder por enquanto.";
 }
 
-/* ---------- Gerar prévia final ---------- */
 
 function gerarPreview() {
     if (!imgBase) {
@@ -401,7 +394,6 @@ function gerarPreview() {
     mostrarPreviewResultado(canvasFinal.toDataURL("image/png"));
 }
 
-/* ---------- PDF da prévia ---------- */
 
 async function logoComoDataUrl() {
     try {
@@ -530,7 +522,6 @@ btnBaixarPdf.addEventListener("click", baixarPdf);
 btnGerarPreview.addEventListener("click", gerarPreview);
 btnEditarNovamente.addEventListener("click", mostrarEditor);
 
-/* ---------- Modal ---------- */
 
 function abrirModal(estampa) {
     estampaAtual = estampa;
@@ -554,7 +545,6 @@ modalEl.addEventListener("hidden.bs.modal", () => {
     imgEstampa = null;
 });
 
-/* ---------- Galeria ---------- */
 
 function criarCard(estampa) {
     const col = document.createElement("div");
