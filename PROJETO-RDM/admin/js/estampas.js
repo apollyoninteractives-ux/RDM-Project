@@ -1,7 +1,3 @@
-// Envia uploads da seção "Estampas" do painel admin para o Firestore
-// (coleção "estampas") e mantém a listagem/exclusão sincronizadas. Segue o
-// mesmo padrão de admin/js/encomendas.js.
-
 import { db } from "./firebase.js";
 import {
     collection,
@@ -24,8 +20,7 @@ const uploadPreview = document.getElementById("previewEstampas");
 
 const estampasCollection = collection(db, "estampas");
 
-// Documentos do Firestore têm limite de ~1MB: a imagem é redimensionada e
-// comprimida no navegador antes de salvar.
+
 const DIMENSAO_MAXIMA = 1280;
 const TAMANHO_ALVO_BYTES = 700000;
 
@@ -59,8 +54,7 @@ function converterImagemParaDataURL(arquivo) {
                     }
                 }
 
-                // PNG/WebP/GIF podem ter transparência: JPEG a transformaria em fundo preto.
-                // Nesses casos salvamos em WebP (mantém o canal alpha e é leve).
+           
                 const temTransparencia = /^image\/(png|webp|gif)$/.test(arquivo.type);
                 const formato = temTransparencia ? "image/webp" : "image/jpeg";
 
@@ -80,8 +74,6 @@ function converterImagemParaDataURL(arquivo) {
                     dataUrl = gerar(width, height, qualidade);
                 }
 
-                // Navegadores sem suporte a WebP devolvem PNG (ignora a qualidade):
-                // nesse caso reduzimos as dimensões até caber.
                 while (dataUrl.length > TAMANHO_ALVO_BYTES && width > 200) {
                     width = Math.round(width * 0.85);
                     height = Math.round(height * 0.85);

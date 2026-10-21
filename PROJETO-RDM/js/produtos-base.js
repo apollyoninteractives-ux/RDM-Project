@@ -1,9 +1,3 @@
-// Configuração das imagens base dos produtos (fotos reais, sem IA).
-// Cada produto+cor aponta para /img/produtos/<produto>/<cor>.png (ou .jpg);
-// enquanto a foto real não existe, o simulador desenha um placeholder no
-// lugar. "area" define a região padrão da estampa em porcentagem (0 a 1)
-// do tamanho da imagem base, e o cliente pode arrastar/redimensionar a partir daí.
-
 function slug(texto) {
     return texto
         .toLowerCase()

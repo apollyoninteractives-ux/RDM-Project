@@ -1,5 +1,3 @@
-/* Mantém a página invisível até auth-guard.js confirmar o login,
-   evitando que o conteúdo admin pisque antes do redirecionamento. */
 html:not(.auth-ok){
   visibility:hidden;
 }

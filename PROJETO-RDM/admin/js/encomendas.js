@@ -1,6 +1,3 @@
-// Envia uploads da seção "Encomendas finalizadas" do painel admin para o
-// Firestore (coleção "encomendas") e mantém a listagem/exclusão sincronizadas.
-
 import { db } from "./firebase.js";
 import {
     collection,
@@ -23,8 +20,6 @@ const uploadPreview = document.getElementById("previewEncomendas");
 
 const encomendasCollection = collection(db, "encomendas");
 
-// Documentos do Firestore têm limite de ~1MB: a imagem é redimensionada e
-// comprimida no navegador antes de salvar.
 const DIMENSAO_MAXIMA = 1280;
 const TAMANHO_ALVO_BYTES = 700000;
 

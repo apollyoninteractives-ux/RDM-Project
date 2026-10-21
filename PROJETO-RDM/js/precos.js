@@ -1,10 +1,3 @@
-// Tabela de preços do simulador de estampas.
-// >>> EDITE AQUI os valores (em reais). Os números abaixo são EXEMPLOS. <<<
-//
-// Preço final = preço do material + acréscimo do tamanho.
-// Os nomes de produto, material e tamanho precisam ser idênticos aos do
-// CATALOGO_PRODUTOS em estampas.js.
-
 export const PRECOS = {
     "Camiseta": {
         materiais: { "Algodão": 39.90, "Poliéster (Dry-fit)": 44.90, "Malha PV": 34.90 },

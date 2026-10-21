@@ -1,6 +1,3 @@
-/* ============================================
-   RDM Gráfica — Painel Administrativo (uploads)
-   ============================================ */
 
 :root{
   --red:#d91c23;
@@ -16,7 +13,6 @@ body{
   background:#fff;
 }
 
-/* ---------- Navbar do admin ---------- */
 .navbar-admin{
   position:relative;
   background:#111;
@@ -75,7 +71,6 @@ body{
   width:100%;
 }
 
-/* ---------- Fundo geral ---------- */
 .admin-bg{
   min-height:100vh;
   padding:60px 0 90px;
@@ -95,7 +90,6 @@ body{
   margin-bottom:14px;
 }
 
-/* ---------- Cards ---------- */
 .admin-card{
   background:linear-gradient(135deg,#dcdcdc 0%,#b6b6b6 55%,#a0a0a0 100%);
   border:1px solid #8f8f8f;
@@ -109,8 +103,6 @@ body{
   row-gap:24px;
 }
 
-/* Colunas ficam com a mesma altura (a maior define a altura da linha)
-   e cada uma decide como usar esse espaço internamente. */
 .admin-col-upload{
   display:flex;
   align-items:center;
@@ -142,14 +134,11 @@ body{
   flex-shrink:0;
 }
 
-/* Botão sempre ancorado na base da coluna e alinhado à esquerda —
-   acompanha a borda esquerda dos campos acima dele. */
 .admin-col-form .btn-admin{
   margin-top:auto;
   align-self:flex-start;
 }
 
-/* ---------- Upload boxes ---------- */
 .upload-box{
   background:linear-gradient(160deg,#e6585d,#b41920);
   border:1px solid rgba(0,0,0,.25);
@@ -179,7 +168,6 @@ body{
   min-height:126px;
 }
 
-/* ---------- Campos ---------- */
 .admin-label{
   display:block;
   font-size:.85rem;
@@ -213,7 +201,6 @@ body{
   padding:7px 16px;
 }
 
-/* ---------- Botões ---------- */
 .btn-admin{
   background:#f2f0ee;
   border:2px solid var(--red);
@@ -248,7 +235,6 @@ body{
   box-shadow:0 6px 14px rgba(217,28,35,.3);
 }
 
-/* ---------- Listagem de uploads ---------- */
 .admin-card-list{
   background:linear-gradient(135deg,#dcdcdc 0%,#b6b6b6 55%,#a0a0a0 100%);
   padding:0;
@@ -312,7 +298,6 @@ body{
   border-radius:8px;
 }
 
-/* ---------- Animação de scroll (mesma do site) ---------- */
 .reveal{
   opacity:0;
   transform:translateY(30px);

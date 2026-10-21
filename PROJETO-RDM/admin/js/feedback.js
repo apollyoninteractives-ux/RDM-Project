@@ -1,7 +1,3 @@
-// Lê a coleção "AjudaEFeedback" do Firestore (a mesma em que o formulário
-// público em html/ajuda-e-feedback.html grava) e monta a listagem de
-// feedbacks/ajuda no painel admin, com botão de excluir por item.
-
 import { db } from "./firebase.js";
 import {
     collection,
@@ -83,7 +79,6 @@ async function carregarFeedbacks() {
         snap.forEach(docSnap => {
             listaFeedbacks.appendChild(criarItem(docSnap.id, docSnap.data()));
         });
-        // Se a lista continuar vazia, o CSS (.feedback-list:empty) já mostra o aviso.
 
     } catch (erro) {
         console.error("Erro ao carregar feedbacks:", erro);

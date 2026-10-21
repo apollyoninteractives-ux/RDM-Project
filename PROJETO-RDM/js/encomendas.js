@@ -1,6 +1,4 @@
-// Página pública "Histórico de Encomendas": lê a coleção "encomendas" do
-// Firestore (a mesma em que admin/js/encomendas.js salva) e monta um card
-// por upload. Ao clicar em um card, abre um modal com imagem, descrição e data.
+
 
 import { db } from "../admin/js/firebase.js";
 import {

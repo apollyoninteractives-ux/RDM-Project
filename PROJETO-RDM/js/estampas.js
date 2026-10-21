@@ -1,9 +1,3 @@
-// Página pública "Estampas": lê a coleção "estampas" do Firestore (a mesma
-// em que admin/js/estampas.js salva) e monta um card por estampa. Ao clicar,
-// abre um modal onde a pessoa escolhe produto, material e tamanho e simula a
-// estampa sobre uma foto base do produto (ver /img/produtos e
-// produtos-base.js), podendo arrastar/redimensionar antes de gerar a prévia.
-
 import { db } from "../admin/js/firebase.js";
 import {
     collection,
