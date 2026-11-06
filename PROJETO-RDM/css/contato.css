@@ -1,0 +1,93 @@
+.contato-bg{
+  position:relative;
+  min-height:100vh;
+  padding:calc(var(--nav-height) + 62px) 0 80px;
+  background:linear-gradient(160deg,#fff 0%,#eeeeee 100%);
+}
+
+.contato-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:35px;
+  box-shadow:var(--shadow-sm);
+  margin-bottom:32px;
+}
+
+.contato-card p{
+  color:#333;
+  line-height:1.7;
+}
+
+.contato-social{
+  margin-bottom:10px;
+}
+
+.contato-social-row{
+  display:flex;
+  justify-content:center;
+  gap:48px;
+  margin-top:24px;
+  flex-wrap:wrap;
+}
+
+.contato-social-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  transition:transform .25s var(--ease);
+}
+
+.contato-social-item:hover{
+  transform:translateY(-4px);
+}
+
+.contato-icon{
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  background:linear-gradient(160deg,#e6585d,#b41118);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 10px 22px rgba(180,17,24,.25);
+}
+
+.contato-label{
+  color:var(--red);
+  font-weight:700;
+  font-size:.95rem;
+  text-transform:lowercase;
+}
+
+.contato-endereco p{
+  color:#333;
+  font-weight:600;
+  margin:0 0 6px;
+}
+
+.contato-mapa{
+  margin-top:20px;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:var(--shadow-sm);
+}
+
+.contato-mapa iframe{
+  display:block;
+}
+
+.contato-mapa-link a{
+  color:var(--red);
+  font-weight:600;
+  font-size:.9rem;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+
+.contato-mapa-link a:hover{
+  color:var(--red-dark);
+  text-decoration:underline;
+}

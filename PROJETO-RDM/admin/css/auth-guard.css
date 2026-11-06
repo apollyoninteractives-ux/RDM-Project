@@ -1,0 +1,3 @@
+html:not(.auth-ok){
+  visibility:hidden;
+}
